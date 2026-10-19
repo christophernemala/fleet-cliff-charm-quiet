@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>Convergint Business Command Center</title>
+  <style>
+    :root{
+      --foundation:#0E2C49;
+      --logo:#054163;
+      --tech:#0099D8;
+      --red:#C2090E;
+      --silver:#8D98AC;
+      --mist:#EEF2F4;
+      --white:#FFFFFF;
+      --ink:#18344c;
+      --muted:#6f8192;
+      --line:#dce5eb;
+      --ok:#2f7d5d;
+      --warn:#a46a00;
+      --shadow:0 12px 35px rgba(14,44,73,.08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;font-family:"Helvetica Neue",Arial,sans-serif;background:#f7f9fb;color:var(--ink)}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    .app{min-height:100vh;display:grid;grid-template-columns:252px 1fr}
+    .sidebar{background:var(--foundation);color:white;padding:22px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:22px}
+    .brand{display:flex;align-items:center;gap:10px;padding:4px 10px 18px;border-bottom:1px solid rgba(255,255,255,.13)}
+    .brandmark{font-size:28px;font-weight:400;letter-spacing:-1.4px}.brandmark i{font-style:normal;color:var(--red);font-weight:700}
+    .brand small{display:block;font-size:11px;color:#c9d5df;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+    .nav{display:grid;gap:6px}.nav button{border:0;background:transparent;color:#d9e3eb;text-align:left;padding:11px 12px;border-radius:10px;display:flex;align-items:center;gap:11px}
+    .nav button:hover,.nav button.active{background:rgba(255,255,255,.11);color:white}
+    .nav-dot{width:8px;height:8px;border-radius:50%;background:var(--tech)}
+    .sidebar-foot{margin-top:auto;padding:12px;border-radius:14px;background:rgba(255,255,255,.08);font-size:12px;color:#d7e1e9;line-height:1.45}
+    .main{min-width:0}.topbar{height:76px;background:white;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:30}
+    .topbar h1{font-size:20px;margin:0;font-weight:700}.topbar p{font-size:12px;color:var(--muted);margin:4px 0 0}
+    .top-actions{display:flex;align-items:center;gap:9px}.chip,.btn{border:1px solid var(--line);background:white;border-radius:10px;padding:9px 11px;color:var(--ink)}
+    .btn.primary{background:var(--foundation);color:white;border-color:var(--foundation)}.btn.red{background:var(--red);border-color:var(--red);color:white}
+    .content{padding:26px;max-width:1600px;margin:auto}
+    .hero{background:linear-gradient(105deg,var(--foundation),var(--logo));border-radius:22px;color:white;padding:26px 28px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .hero h2{font-size:28px;margin:0 0 7px}.hero p{margin:0;color:#d7e5ef;max-width:720px}.live{display:flex;align-items:center;gap:8px;font-size:12px}.pulse{width:9px;height:9px;background:#48c58a;border-radius:50%;box-shadow:0 0 0 5px rgba(72,197,138,.14)}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px}.toolbar select{border:1px solid var(--line);background:white;border-radius:10px;padding:9px 12px;color:var(--ink)}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{background:white;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;min-width:0}.card h3{margin:0;font-size:14px}.card .sub{color:var(--muted);font-size:12px;margin-top:4px}
+    .kpi{grid-column:span 2;min-height:132px;position:relative;overflow:hidden}.kpi .label{font-size:12px;color:var(--muted)}.kpi .value{font-size:27px;font-weight:700;margin-top:15px;letter-spacing:-.8px}.kpi .delta{font-size:12px;margin-top:8px}.delta.good{color:var(--ok)}.delta.bad{color:var(--red)}.kpi:after{content:"";position:absolute;width:70px;height:70px;border-radius:50%;right:-22px;top:-18px;background:rgba(0,153,216,.08)}
+    .span-4{grid-column:span 4}.span-5{grid-column:span 5}.span-6{grid-column:span 6}.span-7{grid-column:span 7}.span-8{grid-column:span 8}.span-12{grid-column:span 12}
+    .chart{height:250px;margin-top:12px;display:flex;align-items:end;gap:11px;padding:12px 4px 0;border-top:1px solid #eef3f6}.bar-group{flex:1;display:flex;align-items:end;gap:4px;height:100%;position:relative}.bar{flex:1;border-radius:6px 6px 2px 2px;min-width:6px}.bar.actual{background:var(--tech)}.bar.target{background:#dbe6ec}.bar-label{position:absolute;bottom:-23px;left:0;right:0;text-align:center;font-size:10px;color:var(--muted)}
+    .health{display:grid;gap:10px;margin-top:14px}.health-row{display:grid;grid-template-columns:1fr auto;align-items:center;padding:11px 0;border-bottom:1px solid #eef3f6}.status{font-size:11px;padding:5px 8px;border-radius:999px;background:#edf7f2;color:var(--ok)}.status.warn{background:#fff5df;color:var(--warn)}
+    .alerts{display:grid;gap:10px;margin-top:12px}.alert{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:12px;background:#f8fafc}.alert .sev{width:9px;height:9px;border-radius:50%;margin-top:5px;background:var(--red)}.alert .sev.warn{background:#d48900}.alert strong{font-size:12px;display:block}.alert span{font-size:11px;color:var(--muted)}
+    .section-title{display:flex;justify-content:space-between;align-items:end;margin:28px 0 12px}.section-title h2{margin:0;font-size:20px}.section-title p{margin:4px 0 0;color:var(--muted);font-size:12px}
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px;margin-top:12px}table{width:100%;border-collapse:collapse;min-width:920px}th,td{padding:12px 13px;text-align:left;border-bottom:1px solid #edf2f5;font-size:12px}th{background:#f8fafb;color:#587084;font-size:11px;text-transform:uppercase;letter-spacing:.04em}tr:hover td{background:#fbfdfe}.customer-link{border:0;background:none;color:var(--logo);padding:0;font-weight:700}.aging{display:inline-flex;padding:4px 7px;border-radius:999px;font-weight:700;font-size:10px}.aging.red{background:#fdeaea;color:var(--red)}.aging.orange{background:#fff3dc;color:#9a6300}.aging.blue{background:#e9f6fb;color:#087da8}
+    .mini-chart{height:94px;margin-top:14px;position:relative}.mini-chart svg{width:100%;height:100%}.mini-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.mini-metrics div{padding:10px;background:#f8fafb;border-radius:11px}.mini-metrics strong{display:block;font-size:16px}.mini-metrics span{font-size:10px;color:var(--muted)}
+    .customize-banner{display:none;background:#fff7e8;border:1px solid #f4d8a2;border-radius:14px;padding:13px 15px;margin-bottom:16px;align-items:center;justify-content:space-between;gap:12px}.customize-banner.show{display:flex}.widget-control{display:none;position:absolute;top:10px;right:10px;background:white;border:1px solid var(--line);border-radius:8px;padding:4px 7px;font-size:10px}.customizing .card{outline:1px dashed #99b0c1;position:relative}.customizing .widget-control{display:block}
+    .modal{position:fixed;inset:0;background:rgba(9,29,46,.48);display:none;align-items:center;justify-content:center;padding:18px;z-index:100}.modal.show{display:flex}.modal-panel{width:min(820px,100%);max-height:88vh;overflow:auto;background:white;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.2)}.modal-head{padding:20px 22px;background:var(--foundation);color:white;display:flex;justify-content:space-between;align-items:center}.modal-head h2{margin:0;font-size:20px}.modal-body{padding:22px}.close{border:0;background:rgba(255,255,255,.12);color:white;width:34px;height:34px;border-radius:10px}.customer-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.customer-kpis div{padding:13px;background:#f7f9fb;border-radius:12px}.customer-kpis span{font-size:10px;color:var(--muted);display:block}.customer-kpis strong{font-size:18px;margin-top:5px;display:block}
+    .toast{position:fixed;right:22px;bottom:22px;background:var(--foundation);color:white;padding:12px 16px;border-radius:12px;box-shadow:var(--shadow);opacity:0;transform:translateY(15px);transition:.25s;z-index:200}.toast.show{opacity:1;transform:none}
+    .hidden-widget{display:none!important}.mobile-menu{display:none;border:0;background:var(--foundation);color:white;border-radius:9px;padding:8px 10px}
+    @media (max-width: 1180px){.kpi{grid-column:span 4}.span-4,.span-5,.span-7,.span-8{grid-column:span 6}.customer-kpis{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width: 900px){.app{grid-template-columns:78px 1fr}.sidebar{padding:20px 10px}.brand small,.brand .name,.nav .label,.sidebar-foot{display:none}.brand{justify-content:center;padding:4px 0 16px}.nav button{justify-content:center}.content{padding:18px}.topbar{padding:0 18px}}
+    @media (max-width: 760px){.app{display:block}.sidebar{position:fixed;left:-280px;width:250px;z-index:90;transition:.25s}.sidebar.open{left:0}.brand small,.brand .name,.nav .label,.sidebar-foot{display:block}.nav button{justify-content:flex-start}.mobile-menu{display:inline-block}.topbar{height:auto;padding:12px 14px;gap:10px}.top-actions .chip{display:none}.content{padding:14px}.hero{padding:20px;align-items:flex-start;flex-direction:column}.hero h2{font-size:23px}.grid{grid-template-columns:1fr}.kpi,.span-4,.span-5,.span-6,.span-7,.span-8,.span-12{grid-column:1}.customer-kpis{grid-template-columns:1fr 1fr}.topbar h1{font-size:16px}.chart{height:200px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brandmark">converg<i>i</i>nt</div><div class="name"><small>Business Command Center</small></div></div>
+    <nav class="nav">
+      <button class="active"><span class="nav-dot"></span><span class="label">Executive Overview</span></button>
+      <button><span class="nav-dot"></span><span class="label">Finance</span></button>
+      <button><span class="nav-dot"></span><span class="label">Sales</span></button>
+      <button><span class="nav-dot"></span><span class="label">Inventory</span></button>
+      <button><span class="nav-dot"></span><span class="label">People</span></button>
+      <button><span class="nav-dot"></span><span class="label">Marketing</span></button>
+      <button><span class="nav-dot"></span><span class="label">Social</span></button>
+    </nav>
+    <div class="sidebar-foot">Sandbox mode<br><strong>Demo database connected</strong><br>Realtime simulation active</div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:12px"><button class="mobile-menu" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button><div><h1>Business Command Center</h1><p id="freshness">Data refreshed just now</p></div></div>
+      <div class="top-actions"><button class="chip" onclick="simulatePayment()">Simulate payment</button><button class="btn" onclick="toggleCustomize()">Customize</button><button class="btn primary">CN</button></div>
+    </header>
+
+    <div class="content" id="dashboard">
+      <section class="hero">
+        <div><h2>Good afternoon, Christopher</h2><p>A unified view of business performance, working capital, commercial activity, inventory, people, and demand signals.</p></div>
+        <div class="live"><span class="pulse"></span> Live sandbox connected</div>
+      </section>
+
+      <div class="customize-banner" id="customBanner"><div><strong>Customize dashboard</strong><div style="font-size:12px;color:#7f6836">Hide widgets, then save this layout to your browser.</div></div><button class="btn primary" onclick="saveLayout()">Save layout</button></div>
+
+      <div class="toolbar"><select><option>United Arab Emirates</option><option>Saudi Arabia</option><option>South Africa</option></select><select><option>This month</option><option>Last 30 days</option><option>Quarter to date</option></select><select><option>All business units</option><option>Finance</option><option>Sales</option></select></div>
+
+      <section class="grid" id="widgetGrid">
+        <article class="card kpi" data-widget="revenue"><button class="widget-control" onclick="hideWidget(this)">Hide</button><div class="label">Revenue</div><div class="value">AED 8.42M</div><div class="delta good">▲ 8.2% vs prior period</div></article>
+        <article class="card kpi" data-widget="cash"><button class="widget-control" onclick="hideWidget(this)">Hide</button><div class="label">Cash position</div><div class="value">AED 5.71M</div><div class="delta good">▲ AED 340K</div></article>
+        <article class="card kpi" data-widget="ar"><button class="widget-control" onclick="hideWidget(this)">Hide</button><div class="label">Total AR</div><div class="value" id="totalAr">AED 12.84M</div><div class="delta bad">34.2% overdue</div></article>
+        <article class="card kpi" data-widget="overdue"><button class="widget-control" onclick="hideWidget(this)">Hide</button><div class="label">Overdue AR</div><div class="value" id="overdueAr">AED 4.39M</div><div class="delta good">▼ 6.7% vs last month</div></article>
+        <article class="card kpi" data-widget="90plus"><button class="widget-control" onclick="hideWidget(this)">Hide</button><div class="label">90+ Days</div><div class="value">AED 2.84M</div><div class="delta bad">22.1% of AR</div></article>
+        <article class="card kpi" data-widget="dso"><button class="widget-control" onclick="hideWidget(this)">Hide</button><div class="label">DSO</div><div class="value">61 days</div><div class="delta good">▼ 3 days</div></article>
+
+        <article class="card span-8" data-widget="revenueTrend"><button class="widget-control" onclick="hideWidget(this)">Hide</button><h3>Revenue vs target</h3><div class="sub">Monthly performance in AED millions</div><div class="chart">
+          <div class="bar-group"><div class="bar target" style="height:52%"></div><div class="bar actual" style="height:48%"></div><span class="bar-label">Mar</span></div>
+          <div class="bar-group"><div class="bar target" style="height:60%"></div><div class="bar actual" style="height:64%"></div><span class="bar-label">Apr</span></div>
+          <div class="bar-group"><div class="bar target" style="height:68%"></div><div class="bar actual" style="height:66%"></div><span class="bar-label">May</span></div>
+          <div class="bar-group"><div class="bar target" style="height:74%"></div><div class="bar actual" style="height:79%"></div><span class="bar-label">Jun</span></div>
+          <div class="bar-group"><div class="bar target" style="height:82%"></div><div class="bar actual" style="height:86%"></div><span class="bar-label">Jul</span></div>
+          <div class="bar-group"><div class="bar target" style="height:88%"></div><div class="bar actual" style="height:92%"></div><span class="bar-label">Aug</span></div>
+        </div></article>
+
+        <article class="card span-4" data-widget="health"><button class="widget-control" onclick="hideWidget(this)">Hide</button><h3>Business health</h3><div class="sub">Cross-functional status</div><div class="health">
+          <div class="health-row"><span>Finance</span><span class="status warn">Attention</span></div><div class="health-row"><span>Sales</span><span class="status">Healthy</span></div><div class="health-row"><span>Inventory</span><span class="status">Healthy</span></div><div class="health-row"><span>People</span><span class="status">Healthy</span></div><div class="health-row"><span>Marketing</span><span class="status warn">Review</span></div>
+        </div></article>
+
+        <article class="card span-6" data-widget="alerts"><button class="widget-control" onclick="hideWidget(this)">Hide</button><h3>Priority actions</h3><div class="sub">Exceptions requiring management attention</div><div class="alerts">
+          <div class="alert"><span class="sev"></span><div><strong>AED 2.84M receivables are 90+ days overdue</strong><span>11 customer accounts represent 78% of the exposure.</span></div></div>
+          <div class="alert"><span class="sev warn"></span><div><strong>11 collection promises need follow-up</strong><span>4 promises are already past their committed date.</span></div></div>
+          <div class="alert"><span class="sev warn"></span><div><strong>4 inventory items are below reorder level</strong><span>Estimated revenue exposure: AED 118K.</span></div></div>
+        </div></article>
+
+        <article class="card span-6" data-widget="collections"><button class="widget-control" onclick="hideWidget(this)">Hide</button><h3>Collections pulse</h3><div class="sub">Current month recovery trajectory</div><div class="mini-chart"><svg viewBox="0 0 600 100" preserveAspectRatio="none"><polyline fill="none" stroke="#0099D8" stroke-width="4" points="0,78 75,70 150,72 225,52 300,57 375,42 450,35 525,23 600,18"/><polyline fill="none" stroke="#dce5eb" stroke-width="3" stroke-dasharray="8,8" points="0,72 75,65 150,58 225,52 300,46 375,39 450,33 525,27 600,20"/></svg></div><div class="mini-metrics"><div><strong>AED 665K</strong><span>Collected today</span></div><div><strong>AED 5.9M</strong><span>Month to date</span></div><div><strong>81%</strong><span>Forecast attainment</span></div></div></article>
+      </section>
+
+      <div class="section-title"><div><h2>Finance & Accounts Receivable</h2><p>Operational workbench with aging, collections, and customer risk.</p></div><div><span style="font-size:12px;color:var(--muted)">CEI 79.4% · Unapplied Cash AED 1.42M</span></div></div>
+      <section class="grid">
+        <article class="card span-12"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><div><h3>Top collection priorities</h3><div class="sub">Ranked by exposure, aging, broken promises, and dispute status</div></div><button class="btn">Export view</button></div>
+          <div class="table-wrap"><table><thead><tr><th>Customer</th><th>Invoice</th><th>Due date</th><th>Open amount</th><th>Aging</th><th>Collector</th><th>Promise</th><th>Risk</th></tr></thead><tbody>
+            <tr><td><button class="customer-link" onclick="openCustomer('Emaar Community Management')">Emaar Community Management</button></td><td>INV-DXB-260841</td><td>14 Mar 2026</td><td>AED 1,120,000</td><td><span class="aging red">150+ days</span></td><td>A. Khan</td><td>Broken</td><td>High</td></tr>
+            <tr><td><button class="customer-link" onclick="openCustomer('Jumeirah Group')">Jumeirah Group</button></td><td>INV-DXB-260772</td><td>28 Apr 2026</td><td>AED 682,805</td><td><span class="aging red">90+ days</span></td><td>S. Rao</td><td>22 Aug</td><td>High</td></tr>
+            <tr><td><button class="customer-link" onclick="openCustomer('Qatar Shell GTL')">Qatar Shell GTL</button></td><td>INV-DXB-260160</td><td>31 May 2026</td><td>AED 76,178</td><td><span class="aging orange">60–90 days</span></td><td>M. Ali</td><td>Certificate pending</td><td>Medium</td></tr>
+            <tr><td><button class="customer-link" onclick="openCustomer('EFS Facilities Management')">EFS Facilities Management</button></td><td>INV-DXB-260401</td><td>18 Jun 2026</td><td>AED 188,400</td><td><span class="aging blue">30–60 days</span></td><td>R. Das</td><td>PDC in hand</td><td>Medium</td></tr>
+          </tbody></table></div>
+        </article>
+      </section>
+
+      <div class="section-title"><div><h2>Other business functions</h2><p>Unified cross-functional demo modules.</p></div></div>
+      <section class="grid">
+        <article class="card span-4"><h3>Sales</h3><div class="sub">Pipeline health</div><div class="mini-metrics"><div><strong>AED 18.7M</strong><span>Open pipeline</span></div><div><strong>31%</strong><span>Win rate</span></div><div><strong>1.18×</strong><span>Coverage</span></div></div></article>
+        <article class="card span-4"><h3>Inventory</h3><div class="sub">Stock position</div><div class="mini-metrics"><div><strong>AED 3.4M</strong><span>Inventory value</span></div><div><strong>4</strong><span>Below reorder</span></div><div><strong>5.8×</strong><span>Turnover</span></div></div></article>
+        <article class="card span-4"><h3>People</h3><div class="sub">Workforce snapshot</div><div class="mini-metrics"><div><strong>40</strong><span>Headcount</span></div><div><strong>96%</strong><span>Attendance</span></div><div><strong>3</strong><span>Open roles</span></div></div></article>
+        <article class="card span-6"><h3>Marketing</h3><div class="sub">Demand generation</div><div class="mini-metrics"><div><strong>3.6×</strong><span>ROAS</span></div><div><strong>AED 420</strong><span>CAC</span></div><div><strong>284</strong><span>Qualified leads</span></div></div></article>
+        <article class="card span-6"><h3>Social</h3><div class="sub">Engagement summary</div><div class="mini-metrics"><div><strong>184K</strong><span>Reach</span></div><div><strong>4.8%</strong><span>Engagement</span></div><div><strong>+7.2%</strong><span>Follower growth</span></div></div></article>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="modal" id="customerModal"><div class="modal-panel"><div class="modal-head"><div><div style="font-size:11px;color:#bcd1df;text-transform:uppercase;letter-spacing:.08em">Customer 360</div><h2 id="customerName">Customer</h2></div><button class="close" onclick="document.getElementById('customerModal').classList.remove('show')">✕</button></div><div class="modal-body"><div class="customer-kpis"><div><span>Outstanding</span><strong>AED 1.82M</strong></div><div><span>Credit limit</span><strong>AED 3.00M</strong></div><div><span>Average days late</span><strong>34</strong></div><div><span>Risk rating</span><strong>High</strong></div></div><h3 style="margin-top:22px">AI-ready account summary</h3><p style="font-size:13px;line-height:1.65;color:#587084">This sandbox customer shows elevated overdue exposure, at least one unresolved collection action, and a recent payment commitment. In a production build, this panel would pull only authorized database records and send summarized facts to the server-side AI layer for explanation.</p><div class="table-wrap"><table style="min-width:650px"><thead><tr><th>Date</th><th>Activity</th><th>Owner</th><th>Status</th></tr></thead><tbody><tr><td>18 Aug</td><td>Payment follow-up</td><td>Collector</td><td>Open</td></tr><tr><td>15 Aug</td><td>Promise to pay received</td><td>Customer</td><td>At risk</td></tr><tr><td>12 Aug</td><td>Statement shared</td><td>AR team</td><td>Completed</td></tr></tbody></table></div></div></div></div>
+<div class="toast" id="toast">Updated</div>
+<script>
+  let customizing=false;
+  const hidden=new Set(JSON.parse(localStorage.getItem('bcc-hidden')||'[]'));
+  document.querySelectorAll('[data-widget]').forEach(el=>{if(hidden.has(el.dataset.widget))el.classList.add('hidden-widget')});
+
+  function toggleCustomize(){
+    customizing=!customizing;
+    document.getElementById('dashboard').classList.toggle('customizing',customizing);
+    document.getElementById('customBanner').classList.toggle('show',customizing);
+  }
+  function hideWidget(btn){
+    const card=btn.closest('[data-widget]');
+    card.classList.add('hidden-widget'); hidden.add(card.dataset.widget);
+  }
+  function saveLayout(){
+    localStorage.setItem('bcc-hidden',JSON.stringify([...hidden]));
+    customizing=false; document.getElementById('dashboard').classList.remove('customizing'); document.getElementById('customBanner').classList.remove('show');
+    showToast('Dashboard layout saved');
+  }
+  function openCustomer(name){document.getElementById('customerName').textContent=name;document.getElementById('customerModal').classList.add('show')}
+  function simulatePayment(){
+    document.getElementById('totalAr').textContent='AED 12.59M';
+    document.getElementById('overdueAr').textContent='AED 4.14M';
+    document.getElementById('freshness').textContent='Data refreshed just now · simulated AED 250K receipt';
+    showToast('AED 250K payment received · dashboard updated');
+  }
+  function showToast(message){const t=document.getElementById('toast');t.textContent=message;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
+</script>
+</body>
+</html>

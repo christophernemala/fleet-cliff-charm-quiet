@@ -1,0 +1,2691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AR O2C Automation Masterclass | Enterprise Finance Agent Architecture</title>
+<meta name="description" content="Comprehensive guide to Accounts Receivable Order-to-Cash automation with AI agents, bots, and enterprise architecture patterns.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ========================================
+   CSS VARIABLES & GLOBAL STYLES
+   ======================================== */
+:root {
+  --bg-deep: #0A0E27;
+  --bg-surface: rgba(15, 20, 50, 0.7);
+  --bg-surface-solid: #0F1432;
+  --electric-blue: #00D4FF;
+  --gold: #FFD700;
+  --emerald: #00FF88;
+  --coral: #FF4D6A;
+  --purple: #A855F7;
+  --teal: #0EA5E9;
+  --text-primary: #E2E8F0;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+  --glass-border: rgba(0, 212, 255, 0.15);
+  --glass-bg: rgba(15, 20, 50, 0.6);
+  --glass-blur: blur(20px);
+  --neon-glow: 0 0 20px rgba(0, 212, 255, 0.3);
+  --neon-glow-strong: 0 0 30px rgba(0, 212, 255, 0.4), 0 0 60px rgba(0, 212, 255, 0.1);
+  --gold-glow: 0 0 20px rgba(255, 215, 0, 0.3);
+  --emerald-glow: 0 0 20px rgba(0, 255, 136, 0.3);
+  --purple-glow: 0 0 20px rgba(168, 85, 247, 0.3);
+  --radius: 16px;
+  --radius-sm: 8px;
+  --radius-xs: 4px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Page container */
+.page-container {
+  max-width: 1587px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ========================================
+   GRADIENT TEXT UTILITY
+   ======================================== */
+.gradient-text {
+  background: linear-gradient(135deg, var(--electric-blue), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-blue-purple {
+  background: linear-gradient(135deg, var(--electric-blue), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========================================
+   GLASSMORPHISM CARD
+   ======================================== */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--neon-glow-strong);
+}
+
+/* ========================================
+   SHIMMER DIVIDER
+   ======================================== */
+.shimmer-divider {
+  height: 2px;
+  margin: 60px 0;
+  background: linear-gradient(90deg, transparent, var(--electric-blue), var(--gold), var(--purple), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+  border-radius: 2px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ========================================
+   SECTION STYLES
+   ======================================== */
+.section {
+  padding: 60px 0;
+  position: relative;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.section-number {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,215,0,0.05));
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--gold);
+  flex-shrink: 0;
+  box-shadow: var(--gold-glow);
+}
+
+.section-emoji {
+  font-size: 36px;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  max-width: 800px;
+}
+
+/* ========================================
+   TABLE STYLES
+   ======================================== */
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-size: 14px;
+  border: 1px solid var(--glass-border);
+}
+
+.data-table thead th {
+  background: rgba(0, 212, 255, 0.08);
+  padding: 14px 18px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--electric-blue);
+  border-bottom: 1px solid var(--glass-border);
+  white-space: nowrap;
+}
+
+.data-table tbody td {
+  padding: 12px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  vertical-align: top;
+}
+
+.data-table tbody tr { background: rgba(10, 14, 39, 0.5); }
+.data-table tbody tr:nth-child(even) { background: rgba(15, 20, 55, 0.5); }
+.data-table tbody tr:hover { background: rgba(0, 212, 255, 0.04); }
+.data-table tbody tr:last-child td { border-bottom: none; }
+
+/* ========================================
+   CALLOUT BOXES
+   ======================================== */
+.callout {
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin: 28px 0;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+}
+
+.callout-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+.callout-content { flex: 1; }
+.callout-title { font-weight: 700; font-size: 16px; margin-bottom: 6px; }
+.callout-text { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+
+.callout-info { border-left: 4px solid var(--electric-blue); }
+.callout-info .callout-title { color: var(--electric-blue); }
+
+.callout-tip { border-left: 4px solid var(--gold); }
+.callout-tip .callout-title { color: var(--gold); }
+
+.callout-success { border-left: 4px solid var(--emerald); }
+.callout-success .callout-title { color: var(--emerald); }
+
+.callout-warning { border-left: 4px solid var(--coral); }
+.callout-warning .callout-title { color: var(--coral); }
+
+/* ========================================
+   BADGES
+   ======================================== */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.badge-green { background: rgba(0,255,136,0.12); color: var(--emerald); border: 1px solid rgba(0,255,136,0.25); }
+.badge-blue { background: rgba(0,212,255,0.12); color: var(--electric-blue); border: 1px solid rgba(0,212,255,0.25); }
+.badge-gold { background: rgba(255,215,0,0.12); color: var(--gold); border: 1px solid rgba(255,215,0,0.25); }
+.badge-purple { background: rgba(168,85,247,0.12); color: var(--purple); border: 1px solid rgba(168,85,247,0.25); }
+.badge-coral { background: rgba(255,77,106,0.12); color: var(--coral); border: 1px solid rgba(255,77,106,0.25); }
+.badge-muted { background: rgba(148,163,184,0.12); color: var(--text-muted); border: 1px solid rgba(148,163,184,0.25); }
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+.hero {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 40px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(0,212,255,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(168,85,247,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255,215,0,0.04) 0%, transparent 50%);
+  z-index: 0;
+}
+
+/* Circuit board pattern */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: 0;
+}
+
+.hero-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(0,212,255,0.15) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: 30px 30px;
+}
+
+.hero-content { position: relative; z-index: 1; }
+
+.hero-title {
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--electric-blue) 0%, var(--gold) 50%, var(--electric-blue) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heroGradient 4s ease-in-out infinite, heroPulse 3s ease-in-out infinite;
+}
+
+@keyframes heroGradient {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 200% center; }
+}
+
+@keyframes heroPulse {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(0,212,255,0.3)); }
+  50% { filter: drop-shadow(0 0 40px rgba(0,212,255,0.5)); }
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-bottom: 24px;
+  letter-spacing: 0.02em;
+}
+
+.hero-meta {
+  font-size: 14px;
+  color: var(--text-dim);
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-meta-divider { color: rgba(0,212,255,0.3); }
+
+/* ========================================
+   TABLE OF CONTENTS
+   ======================================== */
+.toc-list {
+  list-style: none;
+  position: relative;
+  padding-left: 40px;
+}
+
+.toc-list::before {
+  content: '';
+  position: absolute;
+  left: 27px;
+  top: 28px;
+  bottom: 28px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--electric-blue), var(--gold), var(--purple));
+  border-radius: 2px;
+}
+
+.toc-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 0;
+  position: relative;
+}
+
+.toc-item a {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+
+.toc-item a:hover {
+  background: rgba(0, 212, 255, 0.05);
+  transform: translateX(8px);
+}
+
+.toc-num {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,215,0,0.05));
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--gold);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.toc-content { flex: 1; }
+
+.toc-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.toc-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.toc-page {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   SPECTRUM / COLUMNS
+   ======================================== */
+.three-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.spectrum-card {
+  text-align: center;
+  padding: 36px 28px;
+}
+
+.spectrum-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.spectrum-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.spectrum-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.spectrum-tools {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+/* ========================================
+   SWIMLANE FLOWCHART
+   ======================================== */
+.swimlane-container {
+  overflow-x: auto;
+  margin: 32px 0;
+  padding: 20px 0;
+}
+
+.swimlane {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 16px 20px;
+  margin-bottom: 8px;
+  border-radius: var(--radius);
+  position: relative;
+  min-width: max-content;
+}
+
+.swimlane-label {
+  width: 140px;
+  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-right: 20px;
+}
+
+.swimlane-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex: 1;
+}
+
+.swim-step {
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  position: relative;
+  border: 1px solid;
+}
+
+.swim-arrow {
+  font-size: 20px;
+  margin: 0 8px;
+  opacity: 0.5;
+}
+
+/* Lane colors */
+.lane-sales { background: rgba(0,212,255,0.04); border-left: 4px solid var(--electric-blue); }
+.lane-sales .swimlane-label { color: var(--electric-blue); }
+.lane-sales .swim-step { background: rgba(0,212,255,0.08); border-color: rgba(0,212,255,0.3); color: var(--electric-blue); }
+
+.lane-finance { background: rgba(14,165,233,0.04); border-left: 4px solid var(--teal); }
+.lane-finance .swimlane-label { color: var(--teal); }
+.lane-finance .swim-step { background: rgba(14,165,233,0.08); border-color: rgba(14,165,233,0.3); color: var(--teal); }
+
+.lane-collections { background: rgba(255,215,0,0.04); border-left: 4px solid var(--gold); }
+.lane-collections .swimlane-label { color: var(--gold); }
+.lane-collections .swim-step { background: rgba(255,215,0,0.08); border-color: rgba(255,215,0,0.3); color: var(--gold); }
+
+.lane-treasury { background: rgba(0,255,136,0.04); border-left: 4px solid var(--emerald); }
+.lane-treasury .swimlane-label { color: var(--emerald); }
+.lane-treasury .swim-step { background: rgba(0,255,136,0.08); border-color: rgba(0,255,136,0.3); color: var(--emerald); }
+
+/* ========================================
+   HUB & SPOKE DIAGRAM
+   ======================================== */
+.hub-spoke {
+  position: relative;
+  width: 700px;
+  height: 520px;
+  margin: 40px auto;
+}
+
+.hub-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168,85,247,0.2), rgba(168,85,247,0.05));
+  border: 2px solid var(--purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--purple);
+  box-shadow: var(--purple-glow);
+  z-index: 2;
+  padding: 20px;
+  line-height: 1.4;
+}
+
+.spoke-node {
+  position: absolute;
+  width: 150px;
+  height: 80px;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  z-index: 2;
+  padding: 10px;
+  line-height: 1.3;
+  border: 1.5px solid;
+}
+
+.spoke-node-teal { background: rgba(14,165,233,0.1); border-color: var(--teal); color: var(--teal); top: 35px; left: 50%; transform: translateX(-50%); }
+.spoke-node-gold { background: rgba(255,215,0,0.1); border-color: var(--gold); color: var(--gold); top: 140px; right: 20px; }
+.spoke-node-blue { background: rgba(0,212,255,0.1); border-color: var(--electric-blue); color: var(--electric-blue); bottom: 100px; right: 30px; }
+.spoke-node-green { background: rgba(0,255,136,0.1); border-color: var(--emerald); color: var(--emerald); bottom: 100px; left: 30px; }
+.spoke-node-coral { background: rgba(255,77,106,0.1); border-color: var(--coral); color: var(--coral); top: 140px; left: 20px; }
+
+.spoke-line {
+  position: absolute;
+  z-index: 1;
+}
+
+.spoke-label {
+  position: absolute;
+  font-size: 10px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  background: var(--bg-deep);
+  padding: 2px 8px;
+  border-radius: 10px;
+  z-index: 3;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ========================================
+   ARCHITECTURE LAYERS
+   ======================================== */
+.arch-layers {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
+  margin: 32px 0;
+}
+
+.arch-layer {
+  padding: 18px 24px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.arch-layer-label {
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: 160px;
+  flex-shrink: 0;
+}
+
+.arch-layer-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.arch-pill {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+/* Layer colors */
+.layer-erp { background: rgba(100,116,139,0.08); border-left: 4px solid #64748B; }
+.layer-erp .arch-layer-label { color: #94A3B8; }
+.layer-erp .arch-pill { background: rgba(100,116,139,0.12); border-color: rgba(100,116,139,0.3); color: #94A3B8; }
+
+.layer-integration { background: rgba(14,165,233,0.06); border-left: 4px solid var(--teal); }
+.layer-integration .arch-layer-label { color: var(--teal); }
+.layer-integration .arch-pill { background: rgba(14,165,233,0.12); border-color: rgba(14,165,233,0.3); color: var(--teal); }
+
+.layer-ai { background: rgba(168,85,247,0.06); border-left: 4px solid var(--purple); }
+.layer-ai .arch-layer-label { color: var(--purple); }
+.layer-ai .arch-pill { background: rgba(168,85,247,0.12); border-color: rgba(168,85,247,0.3); color: var(--purple); }
+
+.layer-agent { background: rgba(0,212,255,0.06); border-left: 4px solid var(--electric-blue); }
+.layer-agent .arch-layer-label { color: var(--electric-blue); }
+.layer-agent .arch-pill { background: rgba(0,212,255,0.12); border-color: rgba(0,212,255,0.3); color: var(--electric-blue); }
+
+.layer-output { background: rgba(0,255,136,0.06); border-left: 4px solid var(--emerald); }
+.layer-output .arch-layer-label { color: var(--emerald); }
+.layer-output .arch-pill { background: rgba(0,255,136,0.12); border-color: rgba(0,255,136,0.3); color: var(--emerald); }
+
+/* ========================================
+   VOICE FLOW DIAGRAM
+   ======================================== */
+.voice-flow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin: 32px 0;
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.vf-step {
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  min-width: 140px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.vf-arrow {
+  font-size: 24px;
+  color: var(--electric-blue);
+  flex-shrink: 0;
+  padding: 0 4px;
+  align-self: center;
+}
+
+.vf-diamond {
+  padding: 16px 20px;
+  background: rgba(255,215,0,0.08);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--gold);
+  min-width: 140px;
+  flex-shrink: 0;
+  transform: rotate(0deg);
+}
+
+.vf-branch {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.vf-yes {
+  background: rgba(0,255,136,0.08);
+  border-color: var(--emerald);
+  color: var(--emerald);
+}
+
+.vf-no {
+  background: rgba(255,77,106,0.08);
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+/* ========================================
+   TIMELINE / GANTT
+   ======================================== */
+.gantt-container {
+  margin: 32px 0;
+}
+
+.gantt-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.gantt-label {
+  width: 120px;
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.gantt-track {
+  flex: 1;
+  height: 40px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.gantt-bar {
+  height: 100%;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  position: relative;
+}
+
+.gantt-bar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.gantt-bar-m1 { background: linear-gradient(90deg, rgba(0,212,255,0.6), rgba(0,212,255,0.3)); width: 25%; }
+.gantt-bar-m1::after { background: var(--electric-blue); }
+
+.gantt-bar-m2 { background: linear-gradient(90deg, rgba(14,165,233,0.6), rgba(14,165,233,0.3)); width: 50%; }
+.gantt-bar-m2::after { background: var(--teal); }
+
+.gantt-bar-m3 { background: linear-gradient(90deg, rgba(168,85,247,0.6), rgba(168,85,247,0.3)); width: 75%; }
+.gantt-bar-m3::after { background: var(--purple); }
+
+.gantt-bar-m4 { background: linear-gradient(90deg, rgba(255,215,0,0.6), rgba(255,215,0,0.3)); width: 100%; }
+.gantt-bar-m4::after { background: var(--gold); }
+
+/* Week markers */
+.gantt-weeks {
+  display: flex;
+  margin-left: 136px;
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.gantt-week-marker {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-dim);
+  position: relative;
+}
+
+.gantt-week-marker::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 1px;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+}
+
+/* ========================================
+   CREDIT MATRIX
+   ======================================== */
+.credit-row-platinum td { border-left: 4px solid var(--electric-blue); }
+.credit-row-gold td { border-left: 4px solid var(--gold); }
+.credit-row-silver td { border-left: 4px solid var(--text-muted); }
+.credit-row-bronze td { border-left: 4px solid #F97316; }
+.credit-row-highrisk td { border-left: 4px solid var(--coral); }
+
+/* Fix left border only on first td */
+.credit-row-platinum td:not(:first-child),
+.credit-row-gold td:not(:first-child),
+.credit-row-silver td:not(:first-child),
+.credit-row-bronze td:not(:first-child),
+.credit-row-highrisk td:not(:first-child) {
+  border-left: none;
+}
+
+/* ========================================
+   16-BOT TABLE ROW COLORS
+   ======================================== */
+.row-auto { background: rgba(0,255,136,0.04) !important; }
+.row-auto td:first-child { border-left: 3px solid var(--emerald); }
+
+.row-semi { background: rgba(255,215,0,0.04) !important; }
+.row-semi td:first-child { border-left: 3px solid var(--gold); }
+
+.row-manual { background: rgba(255,77,106,0.04) !important; }
+.row-manual td:first-child { border-left: 3px solid var(--coral); }
+
+/* ========================================
+   BACK TO TOP
+   ======================================== */
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  color: var(--electric-blue);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  text-decoration: none;
+  box-shadow: var(--neon-glow);
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--neon-glow-strong);
+  background: rgba(0,212,255,0.15);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.doc-footer {
+  text-align: center;
+  padding: 40px 0;
+  border-top: 1px solid var(--glass-border);
+  margin-top: 60px;
+}
+
+.doc-footer p {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.doc-footer a {
+  color: var(--electric-blue);
+  text-decoration: none;
+}
+
+.doc-footer a:hover { text-decoration: underline; }
+
+/* Section footer */
+.section-footer {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-dim);
+  padding: 16px 0 0;
+  margin-top: 40px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ========================================
+   REFERENCES
+   ======================================== */
+.ref-group {
+  margin-bottom: 28px;
+}
+
+.ref-group-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 12px;
+  border-left: 3px solid var(--electric-blue);
+}
+
+.ref-list {
+  list-style: none;
+  padding-left: 12px;
+}
+
+.ref-list li {
+  padding: 6px 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.ref-list li a {
+  color: var(--electric-blue);
+  text-decoration: none;
+}
+
+.ref-list li a:hover { text-decoration: underline; }
+
+/* ========================================
+   UTILITY
+   ======================================== */
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mt-32 { margin-top: 32px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.text-center { text-align: center; }
+.flex-gap-8 { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Two column layout */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 24px 0;
+}
+
+/* ========================================
+   HUB SVG LINES (CSS approach)
+   ======================================== */
+.hub-spoke-svg {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  margin: 40px auto;
+}
+
+.hub-spoke-svg svg {
+  width: 100%;
+  height: auto;
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+  body {
+    background: white !important;
+    color: #1a1a1a !important;
+  }
+
+  .glass-card,
+  .callout,
+  .swimlane,
+  .arch-layer,
+  .vf-step,
+  .vf-diamond {
+    background: #f8f9fa !important;
+    backdrop-filter: none !important;
+    border-color: #dee2e6 !important;
+    color: #1a1a1a !important;
+  }
+
+  .gradient-text,
+  .hero-title,
+  .section-title {
+    -webkit-text-fill-color: #1a1a1a !important;
+    color: #1a1a1a !important;
+    background: none !important;
+  }
+
+  .data-table thead th {
+    background: #e9ecef !important;
+    color: #1a1a1a !important;
+  }
+
+  .data-table tbody td {
+    color: #1a1a1a !important;
+    border-color: #dee2e6 !important;
+  }
+
+  .data-table tbody tr,
+  .data-table tbody tr:nth-child(even) {
+    background: white !important;
+  }
+
+  .shimmer-divider {
+    background: #dee2e6 !important;
+    animation: none !important;
+  }
+
+  .back-to-top { display: none !important; }
+
+  .hero-bg,
+  .hero-grid { display: none !important; }
+
+  .badge {
+    border-color: #adb5bd !important;
+    background: #e9ecef !important;
+    color: #1a1a1a !important;
+  }
+
+  .section-number {
+    border-color: #adb5bd !important;
+    color: #1a1a1a !important;
+    background: #f8f9fa !important;
+    box-shadow: none !important;
+  }
+
+  a { color: #0066cc !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">AR O2C AUTOMATION<br>MASTERCLASS</h1>
+    <p class="hero-subtitle">Enterprise Finance Agent Architecture &amp; Implementation Guide</p>
+    <div class="hero-meta">
+      <span>Perplexity Computer</span>
+      <span class="hero-meta-divider">|</span>
+      <span>March 2026</span>
+      <span class="hero-meta-divider">|</span>
+      <span>4th Dimension — AI-Driven Finance Transformation</span>
+    </div>
+  </div>
+</header>
+
+<div class="page-container">
+
+<div class="shimmer-divider"></div>
+
+<!-- ============================================================
+     TABLE OF CONTENTS
+     ============================================================ -->
+<nav class="section" id="toc">
+  <div class="section-header">
+    <span class="section-emoji">📋</span>
+    <div>
+      <h2 class="section-title gradient-text">Table of Contents</h2>
+      <p class="section-subtitle">Navigate through the complete AR O2C automation blueprint</p>
+    </div>
+  </div>
+
+  <ul class="toc-list">
+    <li class="toc-item">
+      <a href="#section-01">
+        <span class="toc-num">01</span>
+        <div class="toc-content">
+          <div class="toc-title">Do You Need a Coding Background?</div>
+          <div class="toc-desc">Automation spectrum, tool breakdown, and skill assessment</div>
+        </div>
+        <span class="toc-page">Section 01</span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#section-02">
+        <span class="toc-num">02</span>
+        <div class="toc-content">
+          <div class="toc-title">Power BI — Why You Need It</div>
+          <div class="toc-desc">Real-time dashboards, DSO tracking, and ERP connectivity</div>
+        </div>
+        <span class="toc-page">Section 02</span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#section-03">
+        <span class="toc-num">03</span>
+        <div class="toc-content">
+          <div class="toc-title">16 Agents &amp; Bots to Build</div>
+          <div class="toc-desc">Complete O2C swimlane, AI agent network, and bot architecture</div>
+        </div>
+        <span class="toc-page">Section 03</span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#section-04">
+        <span class="toc-num">04</span>
+        <div class="toc-content">
+          <div class="toc-title">MCP, Context Windows &amp; Cloud Architecture</div>
+          <div class="toc-desc">Model Context Protocol, LLM comparison, and deployment models</div>
+        </div>
+        <span class="toc-page">Section 04</span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#section-05">
+        <span class="toc-num">05</span>
+        <div class="toc-content">
+          <div class="toc-title">Voice Agent Integration</div>
+          <div class="toc-desc">AI-powered voice collections, call flow, and platform comparison</div>
+        </div>
+        <span class="toc-page">Section 05</span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#section-06">
+        <span class="toc-num">06</span>
+        <div class="toc-content">
+          <div class="toc-title">120-Day Learning Roadmap</div>
+          <div class="toc-desc">Week-by-week implementation timeline with milestones</div>
+        </div>
+        <span class="toc-page">Section 06</span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#section-07">
+        <span class="toc-num">07</span>
+        <div class="toc-content">
+          <div class="toc-title">Tools &amp; Certifications</div>
+          <div class="toc-desc">Master tools table, certification paths, and free resources</div>
+        </div>
+        <span class="toc-page">Section 07</span>
+      </a>
+    </li>
+    <li class="toc-item">
+      <a href="#section-08">
+        <span class="toc-num">08</span>
+        <div class="toc-content">
+          <div class="toc-title">Credit Scoring Matrix</div>
+          <div class="toc-desc">Customer tier classification, credit limits, and auto-actions</div>
+        </div>
+        <span class="toc-page">Section 08</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="section-footer">AR O2C AUTOMATION MASTERCLASS &bull; ENTERPRISE FINANCE AGENT ARCHITECTURE &bull; MARCH 2026</div>
+</nav>
+
+<div class="shimmer-divider"></div>
+
+<!-- ============================================================
+     SECTION 01: DO YOU NEED A CODING BACKGROUND?
+     ============================================================ -->
+<section class="section" id="section-01">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <span class="section-emoji">💻</span>
+    <div>
+      <h2 class="section-title gradient-text">Do You Need a Coding Background?</h2>
+      <p class="section-subtitle">Understanding the automation spectrum and where your existing skills fit in the AR O2C landscape</p>
+    </div>
+  </div>
+
+  <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 24px; color: var(--text-primary);">The Automation Spectrum</h3>
+
+  <div class="three-col">
+    <!-- No-Code -->
+    <div class="glass-card spectrum-card" style="border-top: 3px solid var(--emerald);">
+      <span class="spectrum-icon">🟢</span>
+      <h4 class="spectrum-title" style="color: var(--emerald);">No-Code</h4>
+      <p class="spectrum-desc">Drag-and-drop interfaces. Zero programming knowledge required. Perfect for business users who want to automate basic AR workflows without IT involvement.</p>
+      <div class="spectrum-tools">
+        <span class="badge badge-green">Power Automate</span>
+        <span class="badge badge-green">Power BI</span>
+        <span class="badge badge-green">Power Apps</span>
+      </div>
+    </div>
+    <!-- Low-Code -->
+    <div class="glass-card spectrum-card" style="border-top: 3px solid var(--electric-blue);">
+      <span class="spectrum-icon">🔵</span>
+      <h4 class="spectrum-title" style="color: var(--electric-blue);">Low-Code</h4>
+      <p class="spectrum-desc">Visual builders with some scripting. Basic formula knowledge helps. Ideal for AR analysts who need advanced workflows and conditional logic.</p>
+      <div class="spectrum-tools">
+        <span class="badge badge-blue">UiPath</span>
+        <span class="badge badge-blue">DAX Formulas</span>
+        <span class="badge badge-blue">Power Fx</span>
+      </div>
+    </div>
+    <!-- Pro-Code -->
+    <div class="glass-card spectrum-card" style="border-top: 3px solid var(--purple);">
+      <span class="spectrum-icon">🟣</span>
+      <h4 class="spectrum-title" style="color: var(--purple);">Pro-Code</h4>
+      <p class="spectrum-desc">Full programming for AI agents and custom integrations. Required for building intelligent payment matching, voice agents, and LLM orchestration systems.</p>
+      <div class="spectrum-tools">
+        <span class="badge badge-purple">Python</span>
+        <span class="badge badge-purple">JavaScript</span>
+        <span class="badge badge-purple">LangChain</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size: 20px; font-weight: 700; margin: 40px 0 24px; color: var(--text-primary);">Tool Breakdown — What You Need to Learn</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Coding Level</th>
+        <th>Primary Use in AR</th>
+        <th>Key Skills Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight: 700;">Power Automate</td>
+        <td><span class="badge badge-green">No-Code</span></td>
+        <td>Workflow automation — invoice routing, approval chains, email triggers, dunning notifications</td>
+        <td>Flow logic, connectors, triggers, conditions, loops</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">Power BI</td>
+        <td><span class="badge badge-green">No-Code</span> → <span class="badge badge-blue">Low-Code</span></td>
+        <td>AR dashboards — aging analysis, DSO tracking, collection KPIs, cash flow forecasting</td>
+        <td>Data modeling, DAX, M queries, visualization design</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">UiPath</td>
+        <td><span class="badge badge-blue">Low-Code</span></td>
+        <td>RPA for ERP tasks — cash application, invoice posting, reconciliation data extraction</td>
+        <td>Activity flows, selectors, ReFramework, Orchestrator</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">Python</td>
+        <td><span class="badge badge-purple">Pro-Code</span></td>
+        <td>AI agents — payment matching algorithms, credit scoring models, predictive analytics</td>
+        <td>Pandas, LangChain, API integration, data science libraries</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">Power Apps</td>
+        <td><span class="badge badge-green">No-Code</span> → <span class="badge badge-blue">Low-Code</span></td>
+        <td>Custom AR portals — customer payment portals, dispute submission forms, collector workbenches</td>
+        <td>Canvas apps, Power Fx, Dataverse, SharePoint integration</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">Azure AI Services</td>
+        <td><span class="badge badge-blue">Low-Code</span> → <span class="badge badge-purple">Pro-Code</span></td>
+        <td>Intelligent document processing, entity extraction from remittances, email classification</td>
+        <td>Azure OpenAI, Document Intelligence, Cognitive Services SDK</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-success mt-32">
+    <span class="callout-icon">✅</span>
+    <div class="callout-content">
+      <div class="callout-title">VERDICT: You Are Already Ahead</div>
+      <div class="callout-text">
+        With existing <strong style="color: var(--emerald);">Python, JavaScript, and Oracle ERP knowledge</strong>, you already possess the Pro-Code foundation that 90% of finance professionals lack. Your ERP domain expertise combined with coding ability means you can build AI agents that automate entire O2C sub-processes — not just simple workflows. Focus on bridging the gap with Power BI (for stakeholder reporting), UiPath (for RPA orchestration), and LangChain/Azure AI (for intelligent agent building). You'll be able to cover <strong>all three tiers</strong> of the automation spectrum within 120 days.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-footer">AR O2C AUTOMATION MASTERCLASS &bull; SECTION 01 &bull; CODING BACKGROUND</div>
+</section>
+
+<div class="shimmer-divider"></div>
+
+<!-- ============================================================
+     SECTION 02: POWER BI — WHY YOU NEED IT
+     ============================================================ -->
+<section class="section" id="section-02">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <span class="section-emoji">📊</span>
+    <div>
+      <h2 class="section-title gradient-text">Power BI — Why You Need It</h2>
+      <p class="section-subtitle">The command center for every AR operation — real-time visibility into cash flow, collections, and financial health</p>
+    </div>
+  </div>
+
+  <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 24px; color: var(--text-primary);">Core AR Capabilities</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Capability</th>
+        <th>Description</th>
+        <th>Business Impact</th>
+        <th>Complexity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight: 700; color: var(--electric-blue);">Real-time Aging Dashboard</td>
+        <td>Live aging buckets (Current, 30, 60, 90, 120+ days) with drill-down to invoice level. Auto-refresh from ERP every 15 minutes.</td>
+        <td>Instant visibility into overdue balances — no more Excel spreadsheets</td>
+        <td><span class="badge badge-green">Low</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--electric-blue);">DSO Tracking &amp; Trending</td>
+        <td>Days Sales Outstanding calculated by business unit, customer segment, and region. 12-month rolling trend with forecasting.</td>
+        <td>CFO-ready KPI — identify DSO deterioration before it impacts cash</td>
+        <td><span class="badge badge-blue">Medium</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--electric-blue);">Collection KPIs</td>
+        <td>Collector productivity: calls made, promises secured, amounts collected, aging queue by analyst. Gamification leaderboard.</td>
+        <td>20-30% improvement in collector efficiency with visibility</td>
+        <td><span class="badge badge-blue">Medium</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--electric-blue);">Payment Analytics</td>
+        <td>Payment patterns by customer — average days to pay, preferred methods, seasonal trends. Predictive payment date modeling.</td>
+        <td>Accurate cash forecasting, better credit decisions</td>
+        <td><span class="badge badge-blue">Medium</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--electric-blue);">Cash Flow Forecast</td>
+        <td>AI-assisted 30/60/90-day cash inflow projections based on open AR, historical patterns, and customer risk scores.</td>
+        <td>Treasury planning accuracy improves from 70% to 92%</td>
+        <td><span class="badge badge-purple">High</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--electric-blue);">Executive Reporting</td>
+        <td>One-click PDF export of AR health scorecard for board presentations. Email subscription for daily/weekly distribution.</td>
+        <td>Eliminate 8-10 hours/month of manual report preparation</td>
+        <td><span class="badge badge-green">Low</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="two-col mt-32">
+    <div>
+      <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 20px; color: var(--text-primary);">Learning Path</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>Focus Area</th>
+            <th>Duration</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-blue">1</span></td>
+            <td>Power BI Desktop Basics — data import, relationships, basic visuals</td>
+            <td>2 weeks</td>
+            <td>Free (Desktop)</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-blue">2</span></td>
+            <td>DAX Mastery — CALCULATE, time intelligence, filter context for AR metrics</td>
+            <td>3 weeks</td>
+            <td>Free (online)</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-blue">3</span></td>
+            <td>Power BI Service — workspaces, row-level security, scheduled refresh, alerts</td>
+            <td>1 week</td>
+            <td>$10/user/mo (Pro)</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-blue">4</span></td>
+            <td>PL-300 Certification — official Microsoft Data Analyst exam</td>
+            <td>2 weeks prep</td>
+            <td>$165 exam fee</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 20px; color: var(--text-primary);">ERP Connectivity</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ERP System</th>
+            <th>Connector Type</th>
+            <th>Setup Complexity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 600;">Oracle Fusion Cloud</td>
+            <td>REST API via OTBI / BIP Reports → Dataflow</td>
+            <td><span class="badge badge-blue">Medium</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 600;">SAP S/4HANA</td>
+            <td>OData connector / SAP BW DirectQuery</td>
+            <td><span class="badge badge-purple">High</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 600;">Microsoft D365 F&amp;O</td>
+            <td>Native Dataverse connector (seamless)</td>
+            <td><span class="badge badge-green">Low</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight: 600;">Custom / Legacy ERP</td>
+            <td>ODBC / SQL Server gateway / flat file export</td>
+            <td><span class="badge badge-blue">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="callout callout-info mt-32">
+    <span class="callout-icon">ℹ️</span>
+    <div class="callout-content">
+      <div class="callout-title">Enterprise Adoption</div>
+      <div class="callout-text">
+        Power BI is used by <strong style="color: var(--electric-blue);">97% of Fortune 500 companies</strong> and is consistently ranked #1 in the Gartner Magic Quadrant for Analytics and BI Platforms. In the AR/Finance function specifically, Power BI has become the de facto standard for real-time receivables dashboards, replacing legacy Crystal Reports and manual Excel workbooks. With Microsoft Fabric integration, Power BI now provides direct lakehouse connectivity — enabling real-time AR data pipelines without ETL overhead.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-footer">AR O2C AUTOMATION MASTERCLASS &bull; SECTION 02 &bull; POWER BI</div>
+</section>
+
+<div class="shimmer-divider"></div>
+
+<!-- ============================================================
+     SECTION 03: 16 AGENTS & BOTS TO BUILD
+     ============================================================ -->
+<section class="section" id="section-03">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <span class="section-emoji">🤖</span>
+    <div>
+      <h2 class="section-title gradient-text">16 Agents &amp; Bots to Build</h2>
+      <p class="section-subtitle">Complete O2C automation architecture — from order entry to cash reconciliation with AI-powered agents</p>
+    </div>
+  </div>
+
+  <!-- A) O2C SWIMLANE FLOWCHART -->
+  <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 24px; color: var(--text-primary);">A. Full O2C Swimlane Flowchart</h3>
+
+  <div class="glass-card" style="padding: 24px; overflow-x: auto;">
+    <div class="swimlane-container">
+      <div class="swimlane lane-sales">
+        <div class="swimlane-label">🔵 Sales</div>
+        <div class="swimlane-steps">
+          <span class="swim-step">Order Entry</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Credit Check</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Order Validation</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Order Confirmation</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Fulfillment</span>
+        </div>
+      </div>
+      <div class="swimlane lane-finance">
+        <div class="swimlane-label">🟢 Finance</div>
+        <div class="swimlane-steps">
+          <span class="swim-step">Invoice Generation</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Invoice Delivery</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Billing Reconciliation</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Revenue Recognition</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Tax Compliance</span>
+        </div>
+      </div>
+      <div class="swimlane lane-collections">
+        <div class="swimlane-label">🟡 Collections</div>
+        <div class="swimlane-steps">
+          <span class="swim-step">Aging Analysis</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Risk Scoring</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Dunning Execution</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Escalation</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Recovery / Write-off</span>
+        </div>
+      </div>
+      <div class="swimlane lane-treasury">
+        <div class="swimlane-label">🟢 Treasury</div>
+        <div class="swimlane-steps">
+          <span class="swim-step">Cash Application</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Bank Reconciliation</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">GL Posting</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Period Close</span>
+          <span class="swim-arrow">→</span>
+          <span class="swim-step">Financial Reporting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shimmer-divider" style="margin: 40px 0;"></div>
+
+  <!-- B) AI AGENT NETWORK DIAGRAM -->
+  <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 24px; color: var(--text-primary);">B. AI Agent Network — Hub &amp; Spoke Architecture</h3>
+
+  <div class="glass-card" style="padding: 32px;">
+    <div class="hub-spoke-svg">
+      <svg viewBox="0 0 760 520" xmlns="http://www.w3.org/2000/svg">
+        <!-- Connection lines -->
+        <line x1="380" y1="195" x2="380" y2="95" stroke="#0EA5E9" stroke-width="2" stroke-dasharray="6,4" opacity="0.5"/>
+        <line x1="470" y1="230" x2="590" y2="165" stroke="#FFD700" stroke-width="2" stroke-dasharray="6,4" opacity="0.5"/>
+        <line x1="470" y1="290" x2="580" y2="375" stroke="#00D4FF" stroke-width="2" stroke-dasharray="6,4" opacity="0.5"/>
+        <line x1="290" y1="290" x2="180" y2="375" stroke="#00FF88" stroke-width="2" stroke-dasharray="6,4" opacity="0.5"/>
+        <line x1="290" y1="230" x2="170" y2="165" stroke="#FF4D6A" stroke-width="2" stroke-dasharray="6,4" opacity="0.5"/>
+
+        <!-- MCP Labels on lines -->
+        <rect x="345" y="130" width="70" height="20" rx="10" fill="#0A0E27" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text x="380" y="144" text-anchor="middle" fill="#94A3B8" font-size="9" font-family="Inter">Bank Data</text>
+
+        <rect x="510" y="178" width="90" height="20" rx="10" fill="#0A0E27" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text x="555" y="192" text-anchor="middle" fill="#94A3B8" font-size="9" font-family="Inter">Customer History</text>
+
+        <rect x="510" y="322" width="80" height="20" rx="10" fill="#0A0E27" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text x="550" y="336" text-anchor="middle" fill="#94A3B8" font-size="9" font-family="Inter">Aging Data</text>
+
+        <rect x="175" y="322" width="85" height="20" rx="10" fill="#0A0E27" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text x="217" y="336" text-anchor="middle" fill="#94A3B8" font-size="9" font-family="Inter">GL / Subledger</text>
+
+        <rect x="170" y="178" width="80" height="20" rx="10" fill="#0A0E27" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text x="210" y="192" text-anchor="middle" fill="#94A3B8" font-size="9" font-family="Inter">Call Scripts</text>
+
+        <!-- Center Hub -->
+        <circle cx="380" cy="260" r="85" fill="rgba(168,85,247,0.1)" stroke="#A855F7" stroke-width="2.5"/>
+        <circle cx="380" cy="260" r="85" fill="none" stroke="#A855F7" stroke-width="1" opacity="0.3">
+          <animate attributeName="r" values="85;92;85" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.3;0.1;0.3" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <text x="380" y="248" text-anchor="middle" fill="#A855F7" font-size="14" font-weight="700" font-family="Inter">AI Orchestrator</text>
+        <text x="380" y="268" text-anchor="middle" fill="#A855F7" font-size="11" font-family="Inter">Azure AI / LangChain</text>
+        <text x="380" y="285" text-anchor="middle" fill="#A855F7" font-size="10" font-family="Inter" opacity="0.7">MCP Protocol</text>
+
+        <!-- Spoke 1: Payment Matching (top center) -->
+        <rect x="305" y="30" width="150" height="60" rx="30" fill="rgba(14,165,233,0.1)" stroke="#0EA5E9" stroke-width="1.5"/>
+        <text x="380" y="55" text-anchor="middle" fill="#0EA5E9" font-size="12" font-weight="600" font-family="Inter">Payment Matching</text>
+        <text x="380" y="72" text-anchor="middle" fill="#0EA5E9" font-size="10" font-family="Inter" opacity="0.7">Agent</text>
+
+        <!-- Spoke 2: Credit Risk (top right) -->
+        <rect x="570" y="120" width="150" height="60" rx="30" fill="rgba(255,215,0,0.1)" stroke="#FFD700" stroke-width="1.5"/>
+        <text x="645" y="145" text-anchor="middle" fill="#FFD700" font-size="12" font-weight="600" font-family="Inter">Credit Risk</text>
+        <text x="645" y="162" text-anchor="middle" fill="#FFD700" font-size="10" font-family="Inter" opacity="0.7">Agent</text>
+
+        <!-- Spoke 3: Collection (bottom right) -->
+        <rect x="555" y="350" width="150" height="60" rx="30" fill="rgba(0,212,255,0.1)" stroke="#00D4FF" stroke-width="1.5"/>
+        <text x="630" y="375" text-anchor="middle" fill="#00D4FF" font-size="12" font-weight="600" font-family="Inter">Collection</text>
+        <text x="630" y="392" text-anchor="middle" fill="#00D4FF" font-size="10" font-family="Inter" opacity="0.7">Agent</text>
+
+        <!-- Spoke 4: Reconciliation (bottom left) -->
+        <rect x="55" y="350" width="150" height="60" rx="30" fill="rgba(0,255,136,0.1)" stroke="#00FF88" stroke-width="1.5"/>
+        <text x="130" y="375" text-anchor="middle" fill="#00FF88" font-size="12" font-weight="600" font-family="Inter">Reconciliation</text>
+        <text x="130" y="392" text-anchor="middle" fill="#00FF88" font-size="10" font-family="Inter" opacity="0.7">Agent</text>
+
+        <!-- Spoke 5: Voice (top left) -->
+        <rect x="45" y="120" width="150" height="60" rx="30" fill="rgba(255,77,106,0.1)" stroke="#FF4D6A" stroke-width="1.5"/>
+        <text x="120" y="145" text-anchor="middle" fill="#FF4D6A" font-size="12" font-weight="600" font-family="Inter">Voice Agent</text>
+        <text x="120" y="162" text-anchor="middle" fill="#FF4D6A" font-size="10" font-family="Inter" opacity="0.7">Outbound Calls</text>
+
+        <!-- MCP Protocol badge -->
+        <rect x="295" y="480" width="170" height="28" rx="14" fill="rgba(168,85,247,0.08)" stroke="#A855F7" stroke-width="1"/>
+        <text x="380" y="498" text-anchor="middle" fill="#A855F7" font-size="11" font-weight="600" font-family="Inter">Model Context Protocol (MCP)</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="shimmer-divider" style="margin: 40px 0;"></div>
+
+  <!-- C) 16-BOT TABLE -->
+  <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 16px; color: var(--text-primary);">C. 16-Bot Implementation Matrix</h3>
+
+  <div style="display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;">
+    <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+      <span style="width: 12px; height: 12px; border-radius: 3px; background: rgba(0,255,136,0.3); border: 1px solid var(--emerald); display: inline-block;"></span>
+      <span style="color: var(--emerald);">Fully Automated</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+      <span style="width: 12px; height: 12px; border-radius: 3px; background: rgba(255,215,0,0.3); border: 1px solid var(--gold); display: inline-block;"></span>
+      <span style="color: var(--gold);">Semi-Automated (Human Review)</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+      <span style="width: 12px; height: 12px; border-radius: 3px; background: rgba(255,77,106,0.3); border: 1px solid var(--coral); display: inline-block;"></span>
+      <span style="color: var(--coral);">Manual Intervention Required</span>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>O2C Stage</th>
+        <th>Agent / Bot</th>
+        <th>Platform</th>
+        <th>Function</th>
+        <th>Automation Level</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- ORDER / BILLING (Bots 1-3) -->
+      <tr class="row-auto">
+        <td rowspan="3" style="font-weight: 700; vertical-align: middle; color: var(--electric-blue);">Order &amp; Billing</td>
+        <td style="font-weight: 600;">1. Order Validation Bot</td>
+        <td>UiPath + Oracle API</td>
+        <td>Auto-validates sales orders against credit limits, pricing rules, and inventory. Flags exceptions for review.</td>
+        <td><span class="badge badge-green">Full Auto</span></td>
+      </tr>
+      <tr class="row-auto">
+        <td style="font-weight: 600;">2. Invoice Generation Agent</td>
+        <td>Power Automate + ERP</td>
+        <td>Generates and delivers invoices via email/EDI/portal upon shipment confirmation. Multi-format support (PDF, XML, e-invoice).</td>
+        <td><span class="badge badge-green">Full Auto</span></td>
+      </tr>
+      <tr class="row-semi">
+        <td style="font-weight: 600;">3. Billing Dispute Classifier</td>
+        <td>Azure AI + Python</td>
+        <td>NLP-based classification of incoming billing disputes. Routes to correct resolution queue with suggested resolution.</td>
+        <td><span class="badge badge-gold">Semi-Auto</span></td>
+      </tr>
+
+      <!-- CREDIT (Bots 4-6) -->
+      <tr class="row-auto">
+        <td rowspan="3" style="font-weight: 700; vertical-align: middle; color: var(--gold);">Credit Management</td>
+        <td style="font-weight: 600;">4. Credit Scoring Agent</td>
+        <td>Python + ML Model</td>
+        <td>Real-time credit scoring using payment history, financial data, and external bureau feeds. Auto-assigns tier and limit.</td>
+        <td><span class="badge badge-green">Full Auto</span></td>
+      </tr>
+      <tr class="row-semi">
+        <td style="font-weight: 600;">5. Credit Limit Review Bot</td>
+        <td>Power Automate + D365</td>
+        <td>Triggers periodic credit reviews. Recommends limit adjustments based on aging trends and payment behavior.</td>
+        <td><span class="badge badge-gold">Semi-Auto</span></td>
+      </tr>
+      <tr class="row-manual">
+        <td style="font-weight: 600;">6. Credit Hold Override Agent</td>
+        <td>Power Apps + Approval Flow</td>
+        <td>Manages credit hold exceptions. Requires manager approval via mobile app with full risk context dashboard.</td>
+        <td><span class="badge badge-coral">Manual</span></td>
+      </tr>
+
+      <!-- COLLECTIONS (Bots 7-10) -->
+      <tr class="row-auto">
+        <td rowspan="4" style="font-weight: 700; vertical-align: middle; color: var(--teal);">Collections</td>
+        <td style="font-weight: 600;">7. Dunning Email Agent</td>
+        <td>Power Automate + Azure AI</td>
+        <td>AI-generated personalized dunning emails based on customer tier, aging bucket, and communication history. Multi-language support.</td>
+        <td><span class="badge badge-green">Full Auto</span></td>
+      </tr>
+      <tr class="row-auto">
+        <td style="font-weight: 600;">8. Voice Collection Agent</td>
+        <td>Oversai / Bland AI</td>
+        <td>Outbound AI voice calls to overdue customers. Negotiates payment plans, sends SMS payment links, logs outcomes to ERP.</td>
+        <td><span class="badge badge-green">Full Auto</span></td>
+      </tr>
+      <tr class="row-semi">
+        <td style="font-weight: 600;">9. Promise-to-Pay Tracker</td>
+        <td>UiPath + Power BI</td>
+        <td>Monitors payment promises against actual receipts. Auto-escalates broken promises and adjusts collection strategy.</td>
+        <td><span class="badge badge-gold">Semi-Auto</span></td>
+      </tr>
+      <tr class="row-manual">
+        <td style="font-weight: 600;">10. Escalation &amp; Legal Bot</td>
+        <td>Power Automate + SharePoint</td>
+        <td>Packages accounts for legal escalation — generates demand letters, compiles documentation, notifies legal team.</td>
+        <td><span class="badge badge-coral">Manual</span></td>
+      </tr>
+
+      <!-- CASH APPLICATION (Bots 11-13) -->
+      <tr class="row-auto">
+        <td rowspan="3" style="font-weight: 700; vertical-align: middle; color: var(--emerald);">Cash Application</td>
+        <td style="font-weight: 600;">11. Payment Matching Agent</td>
+        <td>Python + LangChain</td>
+        <td>AI-powered matching of bank receipts to open invoices using fuzzy logic, reference parsing, and amount analysis. 95%+ auto-match rate.</td>
+        <td><span class="badge badge-green">Full Auto</span></td>
+      </tr>
+      <tr class="row-auto">
+        <td style="font-weight: 600;">12. Remittance Parser Bot</td>
+        <td>Azure Document Intelligence</td>
+        <td>Extracts payment details from remittance advices (PDF, email, EDI). Maps to customer and invoice using OCR + NLP.</td>
+        <td><span class="badge badge-green">Full Auto</span></td>
+      </tr>
+      <tr class="row-semi">
+        <td style="font-weight: 600;">13. Deduction Management Agent</td>
+        <td>Python + Power Apps</td>
+        <td>Classifies short payments and deductions. Auto-resolves trade promotions; routes pricing disputes for review.</td>
+        <td><span class="badge badge-gold">Semi-Auto</span></td>
+      </tr>
+
+      <!-- RECONCILIATION & REPORTING (Bots 14-15) -->
+      <tr class="row-auto">
+        <td rowspan="2" style="font-weight: 700; vertical-align: middle; color: var(--purple);">Recon &amp; Reporting</td>
+        <td style="font-weight: 600;">14. GL Reconciliation Agent</td>
+        <td>Python + ERP API</td>
+        <td>Auto-reconciles AR subledger to GL. Identifies variances, proposes adjusting entries, generates month-end reports.</td>
+        <td><span class="badge badge-green">Full Auto</span></td>
+      </tr>
+      <tr class="row-auto">
+        <td style="font-weight: 600;">15. AR Reporting Dashboard Bot</td>
+        <td>Power BI + Power Automate</td>
+        <td>Auto-refreshes dashboards, generates executive summaries, distributes KPI scorecards via email/Teams on schedule.</td>
+        <td><span class="badge badge-green">Full Auto</span></td>
+      </tr>
+
+      <!-- DISPUTES (Bot 16) -->
+      <tr class="row-manual">
+        <td style="font-weight: 700; vertical-align: middle; color: var(--coral);">Disputes</td>
+        <td style="font-weight: 600;">16. Dispute Resolution Agent</td>
+        <td>Azure AI + Power Apps</td>
+        <td>Full dispute lifecycle management — intake, classification, investigation, resolution tracking. AI suggests resolution based on historical patterns.</td>
+        <td><span class="badge badge-coral">Manual</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="shimmer-divider" style="margin: 40px 0;"></div>
+
+  <!-- D) ARCHITECTURE FLOW DIAGRAM -->
+  <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 24px; color: var(--text-primary);">D. Enterprise Architecture — 5-Layer Stack</h3>
+
+  <div class="glass-card" style="padding: 32px;">
+    <div class="arch-layers">
+      <div class="arch-layer layer-erp">
+        <div class="arch-layer-label">Layer 1 — ERP</div>
+        <div class="arch-layer-items">
+          <span class="arch-pill">Oracle Fusion Cloud</span>
+          <span class="arch-pill">SAP S/4HANA</span>
+          <span class="arch-pill">Microsoft D365 F&amp;O</span>
+          <span class="arch-pill">NetSuite</span>
+          <span class="arch-pill">Legacy Systems</span>
+        </div>
+      </div>
+      <div class="arch-layer layer-integration">
+        <div class="arch-layer-label">Layer 2 — Integration</div>
+        <div class="arch-layer-items">
+          <span class="arch-pill">REST APIs</span>
+          <span class="arch-pill">MCP Protocol</span>
+          <span class="arch-pill">Webhooks</span>
+          <span class="arch-pill">SFTP / EDI</span>
+          <span class="arch-pill">Azure Service Bus</span>
+          <span class="arch-pill">OData</span>
+        </div>
+      </div>
+      <div class="arch-layer layer-ai">
+        <div class="arch-layer-label">Layer 3 — AI Engine</div>
+        <div class="arch-layer-items">
+          <span class="arch-pill">Azure OpenAI</span>
+          <span class="arch-pill">LangChain</span>
+          <span class="arch-pill">AutoGen</span>
+          <span class="arch-pill">Document Intelligence</span>
+          <span class="arch-pill">ML Models</span>
+        </div>
+      </div>
+      <div class="arch-layer layer-agent">
+        <div class="arch-layer-label">Layer 4 — Agents</div>
+        <div class="arch-layer-items">
+          <span class="arch-pill">Invoice Bot</span>
+          <span class="arch-pill">Collection Agent</span>
+          <span class="arch-pill">Matching Agent</span>
+          <span class="arch-pill">Voice Agent</span>
+          <span class="arch-pill">Credit Agent</span>
+          <span class="arch-pill">Recon Agent</span>
+        </div>
+      </div>
+      <div class="arch-layer layer-output">
+        <div class="arch-layer-label">Layer 5 — Output</div>
+        <div class="arch-layer-items">
+          <span class="arch-pill">Power BI Dashboards</span>
+          <span class="arch-pill">Email Alerts</span>
+          <span class="arch-pill">ERP Updates</span>
+          <span class="arch-pill">Voice Calls</span>
+          <span class="arch-pill">SMS / WhatsApp</span>
+          <span class="arch-pill">Teams Notifications</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-footer">AR O2C AUTOMATION MASTERCLASS &bull; SECTION 03 &bull; 16 AGENTS &amp; BOTS</div>
+</section>
+
+<div class="shimmer-divider"></div>
+
+<!-- ============================================================
+     SECTION 04: MCP, CONTEXT WINDOWS & CLOUD ARCHITECTURE
+     ============================================================ -->
+<section class="section" id="section-04">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <span class="section-emoji">☁️</span>
+    <div>
+      <h2 class="section-title gradient-text">MCP, Context Windows &amp; Cloud Architecture</h2>
+      <p class="section-subtitle">Understanding Model Context Protocol, LLM capabilities, and deployment models for enterprise AR automation</p>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <span class="callout-icon">ℹ️</span>
+    <div class="callout-content">
+      <div class="callout-title">What is MCP (Model Context Protocol)?</div>
+      <div class="callout-text">
+        MCP is an open standard (pioneered by Anthropic) that provides a universal protocol for connecting AI models to external data sources and tools. Think of it as <strong style="color: var(--electric-blue);">USB-C for AI</strong> — a single standardized interface that lets your AI agents securely access ERP systems, bank feeds, CRM data, and document repositories without custom integration code for each. In AR automation, MCP enables your Collection Agent to pull real-time aging data from Oracle, your Payment Matching Agent to access bank transaction feeds, and your Voice Agent to retrieve customer communication history — all through a unified, secure protocol layer.
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size: 20px; font-weight: 700; margin: 32px 0 20px; color: var(--text-primary);">LLM Context Windows — Model Comparison</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Provider</th>
+        <th>Context Window</th>
+        <th>Token Limit</th>
+        <th>Best For in AR</th>
+        <th>Cost Tier</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight: 700; color: var(--electric-blue);">GPT-4o</td>
+        <td>OpenAI / Azure</td>
+        <td>128K tokens</td>
+        <td>~96,000 words</td>
+        <td>Remittance parsing, email classification, dunning generation</td>
+        <td><span class="badge badge-blue">Medium</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--purple);">Claude 3.5 Sonnet</td>
+        <td>Anthropic</td>
+        <td>200K tokens</td>
+        <td>~150,000 words</td>
+        <td>Complex document analysis, dispute resolution reasoning, policy compliance</td>
+        <td><span class="badge badge-blue">Medium</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--emerald);">Gemini 1.5 Pro</td>
+        <td>Google</td>
+        <td>1M tokens</td>
+        <td>~750,000 words</td>
+        <td>Bulk invoice processing, entire contract analysis, historical pattern mining</td>
+        <td><span class="badge badge-gold">Premium</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--teal);">GPT-4o Mini</td>
+        <td>OpenAI / Azure</td>
+        <td>128K tokens</td>
+        <td>~96,000 words</td>
+        <td>High-volume simple tasks: email routing, basic classification, status updates</td>
+        <td><span class="badge badge-green">Low</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--coral);">Llama 3.1 (70B)</td>
+        <td>Meta (Self-hosted)</td>
+        <td>128K tokens</td>
+        <td>~96,000 words</td>
+        <td>On-premise deployments, sensitive financial data, zero data egress requirements</td>
+        <td><span class="badge badge-green">Low (infra cost)</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size: 20px; font-weight: 700; margin: 40px 0 20px; color: var(--text-primary);">Cloud vs. On-Premise Deployment</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Deployment Model</th>
+        <th>Market Share</th>
+        <th>Best For</th>
+        <th>Pros</th>
+        <th>Cons</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight: 700; color: var(--electric-blue);">Cloud (Azure / AWS / GCP)</td>
+        <td><span class="badge badge-blue" style="font-size: 14px;">85%</span></td>
+        <td>Most enterprises, SaaS ERP users, rapid deployment needs</td>
+        <td>Scalability, managed AI services, no infra overhead, rapid updates</td>
+        <td>Data residency concerns, ongoing subscription costs, vendor lock-in risk</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--text-muted);">On-Premise</td>
+        <td><span class="badge badge-muted" style="font-size: 14px;">10-15%</span></td>
+        <td>Regulated industries (banking, government), legacy ERP environments</td>
+        <td>Full data control, no egress fees, compliance certainty</td>
+        <td>High infra cost, slower updates, GPU procurement challenges</td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--purple);">Hybrid (Growing)</td>
+        <td><span class="badge badge-purple" style="font-size: 14px;">Growing</span></td>
+        <td>UAE enterprises with data sovereignty needs + cloud AI capabilities</td>
+        <td>Best of both — sensitive data stays on-prem, AI processing in cloud</td>
+        <td>Complex architecture, higher management overhead</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-tip mt-32">
+    <span class="callout-icon">💡</span>
+    <div class="callout-content">
+      <div class="callout-title">UAE Deployment Recommendation</div>
+      <div class="callout-text">
+        For UAE-based enterprises, <strong style="color: var(--gold);">Azure UAE North (Dubai) region</strong> provides the best combination of AI service availability and data residency compliance. Azure OpenAI is available in the UAE region, and Azure AI Document Intelligence supports Arabic OCR — critical for bilingual invoice processing. For organizations under Central Bank of UAE (CBUAE) regulations, the hybrid model with Azure Arc and on-premise data storage meets regulatory requirements while enabling cloud AI agent capabilities.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-footer">AR O2C AUTOMATION MASTERCLASS &bull; SECTION 04 &bull; MCP &amp; CLOUD ARCHITECTURE</div>
+</section>
+
+<div class="shimmer-divider"></div>
+
+<!-- ============================================================
+     SECTION 05: VOICE AGENT INTEGRATION
+     ============================================================ -->
+<section class="section" id="section-05">
+  <div class="section-header">
+    <div class="section-number">05</div>
+    <span class="section-emoji">🎙️</span>
+    <div>
+      <h2 class="section-title gradient-text">Voice Agent Integration</h2>
+      <p class="section-subtitle">AI-powered outbound voice collection — transforming AR recovery with natural language conversations</p>
+    </div>
+  </div>
+
+  <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 24px; color: var(--text-primary);">Voice Agent Call Flow</h3>
+
+  <div class="glass-card" style="padding: 28px; overflow-x: auto;">
+    <div class="voice-flow">
+      <div class="vf-step" style="border-color: var(--electric-blue); background: rgba(0,212,255,0.06);">
+        <div style="font-size: 20px; margin-bottom: 6px;">📋</div>
+        <strong style="color: var(--electric-blue);">Outbound Trigger</strong>
+        <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">AR aging data<br>triggers call queue</div>
+      </div>
+      <span class="vf-arrow">→</span>
+      <div class="vf-step" style="border-color: var(--purple); background: rgba(168,85,247,0.06);">
+        <div style="font-size: 20px; margin-bottom: 6px;">🤖</div>
+        <strong style="color: var(--purple);">AI Dials Customer</strong>
+        <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Personalized greeting<br>with account context</div>
+      </div>
+      <span class="vf-arrow">→</span>
+      <div class="vf-step" style="border-color: var(--teal); background: rgba(14,165,233,0.06);">
+        <div style="font-size: 20px; margin-bottom: 6px;">💬</div>
+        <strong style="color: var(--teal);">Natural Conversation</strong>
+        <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Handles objections,<br>discusses balances</div>
+      </div>
+      <span class="vf-arrow">→</span>
+      <div class="vf-diamond">
+        <div style="font-size: 18px; margin-bottom: 4px;">⚖️</div>
+        <strong>Payment<br>Agreed?</strong>
+      </div>
+      <span class="vf-arrow">→</span>
+      <div class="vf-branch">
+        <div class="vf-step vf-yes" style="border-width: 2px;">
+          <strong>✅ YES</strong>
+          <div style="font-size: 11px; margin-top: 4px;">Send Payment Link<br>via SMS → Update ERP</div>
+        </div>
+        <div class="vf-step vf-no" style="border-width: 2px;">
+          <strong>❌ NO</strong>
+          <div style="font-size: 11px; margin-top: 4px;">Escalate to Human →<br>Log &amp; Schedule Follow-up</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size: 20px; font-weight: 700; margin: 40px 0 20px; color: var(--text-primary);">Voice AI Platform Comparison</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Platform</th>
+        <th>Specialty</th>
+        <th>Languages</th>
+        <th>Key Feature</th>
+        <th>Pricing Model</th>
+        <th>AR Suitability</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight: 700; color: var(--electric-blue);">Oversai</td>
+        <td>Enterprise collections, debt recovery</td>
+        <td>EN, AR, HI + 20 more</td>
+        <td>Purpose-built for AR/collections with ERP integration APIs and compliance tooling</td>
+        <td>Per-minute + platform fee</td>
+        <td><span class="badge badge-green">Excellent</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--teal);">Floatbot</td>
+        <td>Banking &amp; financial services</td>
+        <td>EN, AR, HI + 15 more</td>
+        <td>Omnichannel (voice + chat + WhatsApp), strong MENA presence</td>
+        <td>Per-interaction</td>
+        <td><span class="badge badge-green">Excellent</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--purple);">VoiceGenie</td>
+        <td>Sales &amp; outbound engagement</td>
+        <td>EN + 10 more</td>
+        <td>Advanced conversation flows, A/B testing on scripts, sentiment analysis</td>
+        <td>Monthly subscription</td>
+        <td><span class="badge badge-blue">Good</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700; color: var(--coral);">Bland AI</td>
+        <td>Developer-first voice API</td>
+        <td>EN + 8 more</td>
+        <td>Ultra-low latency, full API control, custom voice cloning, programmable call logic</td>
+        <td>Per-minute API pricing</td>
+        <td><span class="badge badge-blue">Good</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-warning mt-32">
+    <span class="callout-icon">⚠️</span>
+    <div class="callout-content">
+      <div class="callout-title">UAE Regulatory Considerations</div>
+      <div class="callout-text">
+        Voice AI for collections in the UAE must comply with <strong style="color: var(--coral);">TDRA (Telecommunications &amp; Digital Government Regulatory Authority)</strong> regulations. Key requirements: (1) AI must identify itself as automated at the start of every call, (2) calls must comply with do-not-call timings (no calls before 8 AM or after 9 PM GST), (3) recordings must be stored for 2 years per Central Bank guidelines, (4) Arabic language support is mandatory for government-related collections, and (5) personal data handling must align with UAE Federal Data Protection Law (2021). Always engage your Legal/Compliance team before deploying voice agents.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-tip mt-24">
+    <span class="callout-icon">💡</span>
+    <div class="callout-content">
+      <div class="callout-title">Real-World Results from Voice AI in Collections</div>
+      <div class="callout-text">
+        Organizations deploying AI voice agents for AR collections report: <strong style="color: var(--gold);">70% automation rate</strong> on outbound collection calls (only 30% require human escalation), <strong style="color: var(--gold);">35% improvement in First Call Resolution (FCR)</strong>, <strong style="color: var(--gold);">25% reduction in DSO</strong> within the first 90 days, and <strong style="color: var(--gold);">60% cost reduction</strong> compared to traditional call center operations. The key success factor is integrating the voice agent directly with the ERP system so it has real-time account context during conversations.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-footer">AR O2C AUTOMATION MASTERCLASS &bull; SECTION 05 &bull; VOICE AGENT INTEGRATION</div>
+</section>
+
+<div class="shimmer-divider"></div>
+
+<!-- ============================================================
+     SECTION 06: 120-DAY LEARNING ROADMAP
+     ============================================================ -->
+<section class="section" id="section-06">
+  <div class="section-header">
+    <div class="section-number">06</div>
+    <span class="section-emoji">🗺️</span>
+    <div>
+      <h2 class="section-title gradient-text">120-Day Learning Roadmap</h2>
+      <p class="section-subtitle">Week-by-week implementation timeline — from foundation to full AI-powered AR automation pipeline</p>
+    </div>
+  </div>
+
+  <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 24px; color: var(--text-primary);">Visual Timeline — 4-Phase Learning Journey</h3>
+
+  <div class="glass-card" style="padding: 32px;">
+    <div class="gantt-container">
+      <div class="gantt-row">
+        <div class="gantt-label" style="color: var(--electric-blue);">Month 1</div>
+        <div class="gantt-track">
+          <div class="gantt-bar gantt-bar-m1">Foundation</div>
+        </div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label" style="color: var(--teal);">Month 2</div>
+        <div class="gantt-track">
+          <div class="gantt-bar gantt-bar-m2">Intermediate</div>
+        </div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label" style="color: var(--purple);">Month 3</div>
+        <div class="gantt-track">
+          <div class="gantt-bar gantt-bar-m3">AI Agents</div>
+        </div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label" style="color: var(--gold);">Month 4</div>
+        <div class="gantt-track">
+          <div class="gantt-bar gantt-bar-m4">Integration</div>
+        </div>
+      </div>
+
+      <div class="gantt-weeks">
+        <span class="gantt-week-marker">W1</span>
+        <span class="gantt-week-marker">W2</span>
+        <span class="gantt-week-marker">W3</span>
+        <span class="gantt-week-marker">W4</span>
+        <span class="gantt-week-marker">W5</span>
+        <span class="gantt-week-marker">W6</span>
+        <span class="gantt-week-marker">W7</span>
+        <span class="gantt-week-marker">W8</span>
+        <span class="gantt-week-marker">W9</span>
+        <span class="gantt-week-marker">W10</span>
+        <span class="gantt-week-marker">W11</span>
+        <span class="gantt-week-marker">W12</span>
+        <span class="gantt-week-marker">W13</span>
+        <span class="gantt-week-marker">W14</span>
+        <span class="gantt-week-marker">W15</span>
+        <span class="gantt-week-marker">W16</span>
+      </div>
+    </div>
+
+    <!-- Month details -->
+    <div class="two-col mt-32">
+      <div>
+        <h4 style="color: var(--electric-blue); font-weight: 700; margin-bottom: 12px;">🔵 Month 1: Foundation (Weeks 1-4)</h4>
+        <ul style="list-style: none; font-size: 14px; color: var(--text-muted); line-height: 2;">
+          <li>• <strong>Week 1:</strong> Power BI Desktop — data import, modeling, first AR dashboard</li>
+          <li>• <strong>Week 2:</strong> DAX fundamentals — CALCULATE, FILTER, time intelligence for DSO</li>
+          <li>• <strong>Week 3:</strong> UiPath Studio — basics, selectors, simple recording workflows</li>
+          <li>• <strong>Week 4:</strong> UiPath ReFramework — queue-based processing, error handling</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color: var(--teal); font-weight: 700; margin-bottom: 12px;">🟢 Month 2: Intermediate (Weeks 5-8)</h4>
+        <ul style="list-style: none; font-size: 14px; color: var(--text-muted); line-height: 2;">
+          <li>• <strong>Week 5:</strong> Advanced Power BI — row-level security, paginated reports</li>
+          <li>• <strong>Week 6:</strong> Build AR aging dashboard with live ERP connection</li>
+          <li>• <strong>Week 7:</strong> Power Automate — invoice routing flows, dunning email chains</li>
+          <li>• <strong>Week 8:</strong> UiPath — build cash application bot (bank file → ERP posting)</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color: var(--purple); font-weight: 700; margin-bottom: 12px;">🟣 Month 3: AI Agents (Weeks 9-12)</h4>
+        <ul style="list-style: none; font-size: 14px; color: var(--text-muted); line-height: 2;">
+          <li>• <strong>Week 9:</strong> Python + LangChain — build payment matching agent</li>
+          <li>• <strong>Week 10:</strong> Azure OpenAI — remittance parsing and email classification</li>
+          <li>• <strong>Week 11:</strong> Credit scoring ML model — train on historical payment data</li>
+          <li>• <strong>Week 12:</strong> Power Automate AI Builder — document processing flows</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color: var(--gold); font-weight: 700; margin-bottom: 12px;">🟡 Month 4: Integration (Weeks 13-16)</h4>
+        <ul style="list-style: none; font-size: 14px; color: var(--text-muted); line-height: 2;">
+          <li>• <strong>Week 13:</strong> Voice AI setup — configure Oversai/Bland AI for collections</li>
+          <li>• <strong>Week 14:</strong> MCP protocol — connect all agents via unified data layer</li>
+          <li>• <strong>Week 15:</strong> End-to-end pipeline testing — order → invoice → collect → reconcile</li>
+          <li>• <strong>Week 16:</strong> Go-live preparation — monitoring dashboards, runbooks, handover</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size: 20px; font-weight: 700; margin: 40px 0 20px; color: var(--text-primary);">Milestone Summary</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Milestone</th>
+        <th>Week</th>
+        <th>Deliverable</th>
+        <th>Skills Validated</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight: 700;">M1</td>
+        <td>Week 2</td>
+        <td>First AR aging dashboard published in Power BI Service</td>
+        <td>Data modeling, DAX, visualization</td>
+        <td><span class="badge badge-blue">Foundation</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">M2</td>
+        <td>Week 4</td>
+        <td>First UiPath bot executing in Orchestrator (invoice data extraction)</td>
+        <td>RPA fundamentals, ReFramework, Orchestrator</td>
+        <td><span class="badge badge-blue">Foundation</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">M3</td>
+        <td>Week 6</td>
+        <td>Production-grade AR dashboard with live ERP data and RLS</td>
+        <td>Power BI Pro, ERP connectivity, security</td>
+        <td><span class="badge badge-blue">Intermediate</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">M4</td>
+        <td>Week 8</td>
+        <td>Cash application bot processing bank files end-to-end</td>
+        <td>UiPath advanced, ERP integration, error handling</td>
+        <td><span class="badge badge-blue">Intermediate</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">M5</td>
+        <td>Week 10</td>
+        <td>AI payment matching agent with 90%+ accuracy</td>
+        <td>Python, LangChain, Azure OpenAI, API design</td>
+        <td><span class="badge badge-purple">AI Agent</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">M6</td>
+        <td>Week 12</td>
+        <td>Credit scoring model deployed with real-time API endpoint</td>
+        <td>ML fundamentals, model deployment, monitoring</td>
+        <td><span class="badge badge-purple">AI Agent</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">M7</td>
+        <td>Week 14</td>
+        <td>Voice agent making 50+ outbound collection calls/day</td>
+        <td>Voice AI configuration, call flow design, ERP hooks</td>
+        <td><span class="badge badge-gold">Integration</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">M8</td>
+        <td>Week 16</td>
+        <td>Full O2C pipeline operational — all 16 agents live with monitoring</td>
+        <td>Architecture, orchestration, DevOps, production readiness</td>
+        <td><span class="badge badge-gold">Integration</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-footer">AR O2C AUTOMATION MASTERCLASS &bull; SECTION 06 &bull; 120-DAY ROADMAP</div>
+</section>
+
+<div class="shimmer-divider"></div>
+
+<!-- ============================================================
+     SECTION 07: TOOLS & CERTIFICATIONS
+     ============================================================ -->
+<section class="section" id="section-07">
+  <div class="section-header">
+    <div class="section-number">07</div>
+    <span class="section-emoji">🛠️</span>
+    <div>
+      <h2 class="section-title gradient-text">Tools &amp; Certifications</h2>
+      <p class="section-subtitle">Master tool stack, certification paths, and investment guide for building your AR automation expertise</p>
+    </div>
+  </div>
+
+  <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 24px; color: var(--text-primary);">Master Tools &amp; Certification Table</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Cost</th>
+        <th>Certification</th>
+        <th>Exam Fee</th>
+        <th>Study Time</th>
+        <th>Priority</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight: 700;">Power BI Desktop</td>
+        <td>Free</td>
+        <td>PL-300: Microsoft Data Analyst</td>
+        <td>$165</td>
+        <td>4-6 weeks</td>
+        <td><span class="badge badge-green">HIGH</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">Power BI Service</td>
+        <td>$10/user/month (Pro)</td>
+        <td>Included in PL-300</td>
+        <td>—</td>
+        <td>Included</td>
+        <td><span class="badge badge-green">HIGH</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">UiPath Studio</td>
+        <td>Free (Community)</td>
+        <td>UiPath RPA Associate (UiRPA)</td>
+        <td>$150</td>
+        <td>4-6 weeks</td>
+        <td><span class="badge badge-green">HIGH</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">Power Automate</td>
+        <td>Included with M365 (basic)</td>
+        <td>PL-500: Power Automate RPA Developer</td>
+        <td>$165</td>
+        <td>3-4 weeks</td>
+        <td><span class="badge badge-green">HIGH</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">Azure AI Services</td>
+        <td>Pay-as-you-go</td>
+        <td>AI-102: Azure AI Engineer</td>
+        <td>$165</td>
+        <td>6-8 weeks</td>
+        <td><span class="badge badge-blue">MEDIUM</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">Python (LangChain)</td>
+        <td>Free (open source)</td>
+        <td>No formal cert — build portfolio</td>
+        <td>—</td>
+        <td>Ongoing</td>
+        <td><span class="badge badge-blue">MEDIUM</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">Power Apps</td>
+        <td>Included with M365 (basic)</td>
+        <td>PL-100: Power Platform App Maker</td>
+        <td>$165</td>
+        <td>3-4 weeks</td>
+        <td><span class="badge badge-muted">LOW</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 700;">Oracle Cloud ERP</td>
+        <td>Enterprise license</td>
+        <td>Oracle Financials Cloud Certified</td>
+        <td>$245</td>
+        <td>8-10 weeks</td>
+        <td><span class="badge badge-gold">DONE ✓</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size: 20px; font-weight: 700; margin: 40px 0 20px; color: var(--text-primary);">Recommended Certification Order</h3>
+
+  <div class="glass-card" style="padding: 28px;">
+    <div style="display: flex; align-items: center; gap: 0; flex-wrap: wrap; justify-content: center;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, rgba(0,255,136,0.2), rgba(0,255,136,0.05)); border: 2px solid var(--emerald); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--emerald);">1</div>
+        <span style="font-size: 12px; font-weight: 600; color: var(--emerald); text-align: center;">PL-300<br>Power BI</span>
+      </div>
+      <div style="width: 40px; height: 2px; background: linear-gradient(90deg, var(--emerald), var(--electric-blue)); margin: 0 8px; flex-shrink: 0;"></div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,212,255,0.05)); border: 2px solid var(--electric-blue); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--electric-blue);">2</div>
+        <span style="font-size: 12px; font-weight: 600; color: var(--electric-blue); text-align: center;">UiRPA<br>UiPath</span>
+      </div>
+      <div style="width: 40px; height: 2px; background: linear-gradient(90deg, var(--electric-blue), var(--teal)); margin: 0 8px; flex-shrink: 0;"></div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, rgba(14,165,233,0.2), rgba(14,165,233,0.05)); border: 2px solid var(--teal); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--teal);">3</div>
+        <span style="font-size: 12px; font-weight: 600; color: var(--teal); text-align: center;">PL-500<br>Power Auto</span>
+      </div>
+      <div style="width: 40px; height: 2px; background: linear-gradient(90deg, var(--teal), var(--purple)); margin: 0 8px; flex-shrink: 0;"></div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(168,85,247,0.05)); border: 2px solid var(--purple); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--purple);">4</div>
+        <span style="font-size: 12px; font-weight: 600; color: var(--purple); text-align: center;">AI-102<br>Azure AI</span>
+      </div>
+      <div style="width: 40px; height: 2px; background: linear-gradient(90deg, var(--purple), var(--gold)); margin: 0 8px; flex-shrink: 0;"></div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,215,0,0.05)); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--gold);">5</div>
+        <span style="font-size: 12px; font-weight: 600; color: var(--gold); text-align: center;">PL-100<br>Power Apps</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size: 20px; font-weight: 700; margin: 40px 0 20px; color: var(--text-primary);">Free Learning Resources</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Resource</th>
+        <th>Platform</th>
+        <th>Focus Area</th>
+        <th>Duration</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight: 600;">Microsoft Learn — PL-300 Path</td>
+        <td>Microsoft Learn</td>
+        <td>Power BI end-to-end</td>
+        <td>~35 hours</td>
+        <td><a href="https://learn.microsoft.com/en-us/certifications/data-analyst-associate/" style="color: var(--electric-blue);">learn.microsoft.com</a></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 600;">UiPath Academy</td>
+        <td>UiPath</td>
+        <td>RPA development, Orchestrator</td>
+        <td>~40 hours</td>
+        <td><a href="https://academy.uipath.com/" style="color: var(--electric-blue);">academy.uipath.com</a></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 600;">LangChain Documentation &amp; Tutorials</td>
+        <td>LangChain</td>
+        <td>AI agent development with Python</td>
+        <td>Self-paced</td>
+        <td><a href="https://python.langchain.com/docs/" style="color: var(--electric-blue);">langchain.com/docs</a></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 600;">Azure AI Fundamentals (AI-900)</td>
+        <td>Microsoft Learn</td>
+        <td>Azure AI services overview</td>
+        <td>~12 hours</td>
+        <td><a href="https://learn.microsoft.com/en-us/certifications/azure-ai-fundamentals/" style="color: var(--electric-blue);">learn.microsoft.com</a></td>
+      </tr>
+      <tr>
+        <td style="font-weight: 600;">SQLBI — DAX Patterns</td>
+        <td>SQLBI</td>
+        <td>Advanced DAX for financial modeling</td>
+        <td>Self-paced</td>
+        <td><a href="https://www.daxpatterns.com/" style="color: var(--electric-blue);">daxpatterns.com</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-tip mt-32">
+    <span class="callout-icon">💡</span>
+    <div class="callout-content">
+      <div class="callout-title">Total Investment Estimate</div>
+      <div class="callout-text">
+        <strong style="color: var(--gold);">Certification Exams:</strong> ~$860 total (PL-300 $165 + UiRPA $150 + PL-500 $165 + AI-102 $165 + PL-100 $165) &nbsp;|&nbsp;
+        <strong style="color: var(--gold);">Tools:</strong> $10/month Power BI Pro + Azure pay-as-you-go (~$50-100/month during learning) &nbsp;|&nbsp;
+        <strong style="color: var(--gold);">Time:</strong> 120 days at 2-3 hours/day = 240-360 hours total investment &nbsp;|&nbsp;
+        <strong style="color: var(--gold);">ROI:</strong> AR automation specialists command $120K-$180K in GCC markets — the investment pays for itself within the first month of a new role.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-footer">AR O2C AUTOMATION MASTERCLASS &bull; SECTION 07 &bull; TOOLS &amp; CERTIFICATIONS</div>
+</section>
+
+<div class="shimmer-divider"></div>
+
+<!-- ============================================================
+     SECTION 08: CREDIT SCORING MATRIX
+     ============================================================ -->
+<section class="section" id="section-08">
+  <div class="section-header">
+    <div class="section-number">08</div>
+    <span class="section-emoji">🏆</span>
+    <div>
+      <h2 class="section-title gradient-text">Credit Scoring Matrix</h2>
+      <p class="section-subtitle">Customer tier classification with automated credit policies, collection strategies, and AI-driven actions</p>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Customer Tier</th>
+        <th>Risk Level</th>
+        <th>Credit Limit Range</th>
+        <th>Payment Terms</th>
+        <th>Collection Strategy</th>
+        <th>Auto-Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="credit-row-platinum">
+        <td>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">💎</span>
+            <strong style="color: var(--electric-blue);">Platinum</strong>
+          </div>
+        </td>
+        <td><span class="badge badge-green">Low</span></td>
+        <td style="font-weight: 600;">&gt; $500,000</td>
+        <td>Net 60</td>
+        <td>Relationship management — dedicated account manager, quarterly business reviews, proactive communication</td>
+        <td><span class="badge badge-green">Auto-approve all orders</span></td>
+      </tr>
+      <tr class="credit-row-gold">
+        <td>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">🥇</span>
+            <strong style="color: var(--gold);">Gold</strong>
+          </div>
+        </td>
+        <td><span class="badge badge-blue">Low-Medium</span></td>
+        <td style="font-weight: 600;">$100,000 – $500,000</td>
+        <td>Net 45</td>
+        <td>Proactive monitoring — automated aging alerts, gentle reminders at 30 days, relationship-based follow-up</td>
+        <td><span class="badge badge-gold">Auto-approve + alert if &gt;80% utilization</span></td>
+      </tr>
+      <tr class="credit-row-silver">
+        <td>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">🥈</span>
+            <strong style="color: var(--text-muted);">Silver</strong>
+          </div>
+        </td>
+        <td><span class="badge badge-gold">Medium</span></td>
+        <td style="font-weight: 600;">$50,000 – $100,000</td>
+        <td>Net 30</td>
+        <td>Regular follow-up — automated dunning at 15/30/45 days, AI voice agent at 60 days, monthly review</td>
+        <td><span class="badge badge-blue">Require approval for orders &gt; $50K</span></td>
+      </tr>
+      <tr class="credit-row-bronze">
+        <td>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">🥉</span>
+            <strong style="color: #F97316;">Bronze</strong>
+          </div>
+        </td>
+        <td><span class="badge badge-coral">Medium-High</span></td>
+        <td style="font-weight: 600;">$10,000 – $50,000</td>
+        <td>Net 15</td>
+        <td>Weekly dunning — automated emails at 7/14/21 days, voice agent at 30 days, escalation at 45 days</td>
+        <td><span class="badge badge-coral">Credit hold auto-trigger at 90% utilization</span></td>
+      </tr>
+      <tr class="credit-row-highrisk">
+        <td>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">🚨</span>
+            <strong style="color: var(--coral);">High-Risk</strong>
+          </div>
+        </td>
+        <td><span class="badge badge-coral">High</span></td>
+        <td style="font-weight: 600;">&lt; $10,000</td>
+        <td>COD / Prepaid</td>
+        <td>Daily monitoring — voice agent immediate contact, daily aging review, senior management escalation at 30 days</td>
+        <td><span class="badge badge-coral">Auto-hold + escalate to Credit Manager</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-info mt-32">
+    <span class="callout-icon">ℹ️</span>
+    <div class="callout-content">
+      <div class="callout-title">How the AI Credit Scoring Agent Works</div>
+      <div class="callout-text">
+        The Credit Scoring Agent (Bot #4) uses a gradient-boosted ML model trained on historical payment data to calculate a composite score (0-100) based on: <strong style="color: var(--electric-blue);">payment history (35%)</strong> — average days to pay, late payment frequency, broken promises; <strong style="color: var(--electric-blue);">financial health (25%)</strong> — D&amp;B rating, financial statements, industry risk; <strong style="color: var(--electric-blue);">relationship tenure (20%)</strong> — years as customer, order volume trend, dispute frequency; and <strong style="color: var(--electric-blue);">external signals (20%)</strong> — news sentiment, market conditions, peer comparisons. The model re-scores all customers weekly and auto-adjusts tiers when scores cross thresholds. Tier changes trigger notifications to the Credit Manager and update ERP credit limits via API.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-footer">AR O2C AUTOMATION MASTERCLASS &bull; SECTION 08 &bull; CREDIT SCORING MATRIX</div>
+</section>
+
+<div class="shimmer-divider"></div>
+
+<!-- ============================================================
+     SOURCES & REFERENCES
+     ============================================================ -->
+<section class="section" id="sources">
+  <div class="section-header">
+    <span class="section-emoji">📚</span>
+    <div>
+      <h2 class="section-title gradient-text">Sources &amp; References</h2>
+      <p class="section-subtitle">Curated resources organized by topic for further exploration</p>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="ref-group">
+        <h4 class="ref-group-title" style="color: var(--electric-blue);">Microsoft / Power Platform</h4>
+        <ul class="ref-list">
+          <li><a href="https://learn.microsoft.com/en-us/power-bi/">Microsoft Power BI Documentation</a> — Official docs, tutorials, and learning paths</li>
+          <li><a href="https://learn.microsoft.com/en-us/power-automate/">Power Automate Documentation</a> — Flow templates, connectors, and RPA guides</li>
+          <li><a href="https://learn.microsoft.com/en-us/certifications/">Microsoft Certifications Hub</a> — PL-300, PL-500, AI-102 exam details</li>
+          <li><a href="https://www.daxpatterns.com/">SQLBI DAX Patterns</a> — Advanced DAX patterns for financial reporting</li>
+        </ul>
+      </div>
+
+      <div class="ref-group">
+        <h4 class="ref-group-title" style="color: var(--teal);">UiPath / RPA</h4>
+        <ul class="ref-list">
+          <li><a href="https://academy.uipath.com/">UiPath Academy</a> — Free RPA training and certification preparation</li>
+          <li><a href="https://docs.uipath.com/">UiPath Documentation</a> — Studio, Orchestrator, and integration guides</li>
+          <li><a href="https://marketplace.uipath.com/">UiPath Marketplace</a> — Pre-built automation components for finance</li>
+        </ul>
+      </div>
+
+      <div class="ref-group">
+        <h4 class="ref-group-title" style="color: var(--coral);">Voice AI Platforms</h4>
+        <ul class="ref-list">
+          <li><a href="https://www.oversai.com/">Oversai</a> — Enterprise voice AI for collections and debt recovery</li>
+          <li><a href="https://floatbot.ai/">Floatbot</a> — Omnichannel conversational AI for financial services</li>
+          <li><a href="https://www.bland.ai/">Bland AI</a> — Developer-first voice AI API platform</li>
+          <li><a href="https://www.voicegenie.ai/">VoiceGenie</a> — AI-powered voice engagement platform</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="ref-group">
+        <h4 class="ref-group-title" style="color: var(--purple);">AI / LLM / Agent Frameworks</h4>
+        <ul class="ref-list">
+          <li><a href="https://python.langchain.com/docs/">LangChain Documentation</a> — Agent development framework and tutorials</li>
+          <li><a href="https://learn.microsoft.com/en-us/azure/ai-services/">Azure AI Services</a> — OpenAI, Document Intelligence, Cognitive Services</li>
+          <li><a href="https://microsoft.github.io/autogen/">Microsoft AutoGen</a> — Multi-agent conversation framework</li>
+          <li><a href="https://modelcontextprotocol.io/">Model Context Protocol (MCP)</a> — Universal AI integration standard</li>
+        </ul>
+      </div>
+
+      <div class="ref-group">
+        <h4 class="ref-group-title" style="color: var(--gold);">Finance / AR Domain</h4>
+        <ul class="ref-list">
+          <li><a href="https://www.highradius.com/resources/">HighRadius Resources</a> — AR automation benchmarks and best practices</li>
+          <li><a href="https://www.gartner.com/reviews/market/cloud-erp-for-product-centric-enterprises">Gartner ERP Reviews</a> — Cloud ERP market analysis and peer reviews</li>
+          <li><a href="https://www.iofm.com/">IOFM</a> — Institute of Finance &amp; Management research</li>
+        </ul>
+      </div>
+
+      <div class="ref-group">
+        <h4 class="ref-group-title" style="color: var(--emerald);">Online Learning</h4>
+        <ul class="ref-list">
+          <li><a href="https://learn.microsoft.com/">Microsoft Learn</a> — Free self-paced learning for all Microsoft technologies</li>
+          <li><a href="https://www.coursera.org/courses?query=power%20bi">Coursera Power BI Courses</a> — University-backed online courses</li>
+          <li><a href="https://www.kaggle.com/learn">Kaggle Learn</a> — Free ML and Python courses with hands-on exercises</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-footer">AR O2C AUTOMATION MASTERCLASS &bull; SOURCES &amp; REFERENCES</div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="doc-footer">
+  <p style="font-size: 15px; color: var(--text-muted); font-weight: 600; margin-bottom: 12px;">
+    AR O2C Automation Masterclass &nbsp;|&nbsp; Enterprise Finance Agent Architecture &nbsp;|&nbsp; March 2026
+  </p>
+  <p>
+    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+  </p>
+  <p style="margin-top: 12px; font-size: 12px; color: var(--text-dim);">
+    This document is intended for enterprise finance professionals. All tool recommendations and architecture patterns are based on industry best practices as of March 2026.
+  </p>
+</footer>
+
+</div><!-- /.page-container -->
+
+<!-- Back to Top -->
+<a href="#top" class="back-to-top" title="Back to Top">↑</a>
+
+</body>
+</html>

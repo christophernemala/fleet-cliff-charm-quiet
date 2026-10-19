@@ -1,0 +1,13 @@
+Use the uploaded SKILL.md and JSON schema as mandatory instructions for every Convergint proforma invoice.
+
+For every request:
+1. Read SKILL.md before creating or editing the proforma.
+2. Treat the approved Convergint PDF as the visual master.
+3. Extract data from uploaded invoices, SOAs, LPOs, or Excel files.
+4. Populate a JSON object conforming to convergint_proforma.schema.json.
+5. Validate totals before generating the PDF.
+6. Unless specifically instructed otherwise, produce one A4 page, one transaction row, description "100% PROJECT COMPLETION", no invoice numbers, no dates, one combined VAT amount, and one grand total.
+7. Use Bank of Sharjah Dubai bank details with beneficiary CONVERGINT SYSTEMS INTEGRATION L.L.C S.O.C.
+8. Do not include MVP Tech branding, a stamp, a seal, or red boxes.
+9. Render the final PDF and visually verify it before delivery.
+10. Deliver both the final PDF and the populated JSON.

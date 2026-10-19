@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/convergint-proforma.schema.json",
+  "title": "Convergint Consolidated Proforma Invoice",
+  "description": "Data contract for generating a one-page Convergint consolidated proforma invoice.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document",
+    "supplier",
+    "customer",
+    "references",
+    "transaction",
+    "totals",
+    "vat_breakup",
+    "bank",
+    "layout"
+  ],
+  "properties": {
+    "document": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "currency", "show_invoice_number", "show_date"],
+      "properties": {
+        "title": {"const": "PROFORMA INVOICE"},
+        "currency": {"const": "AED"},
+        "show_invoice_number": {"type": "boolean", "default": false},
+        "invoice_number": {"type": ["string", "null"], "default": null},
+        "show_date": {"type": "boolean", "default": false},
+        "date": {"type": ["string", "null"], "default": null},
+        "place_of_supply": {"type": "string", "default": "UAE"}
+      }
+    },
+    "supplier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "address_lines", "trn"],
+      "properties": {
+        "name": {"const": "CONVERGINT SYSTEMS INTEGRATION L.L.C"},
+        "address_lines": {
+          "type": "array",
+          "prefixItems": [
+            {"const": "P.O. Box: 28239, Abu Dhabi"},
+            {"const": "United Arab Emirates"}
+          ],
+          "items": false
+        },
+        "trn": {"const": "100436956500003"}
+      }
+    },
+    "customer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "address_lines", "trn"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "address_lines": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 2,
+          "maxItems": 5
+        },
+        "trn": {"type": "string", "pattern": "^[0-9]{15}$"}
+      }
+    },
+    "references": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lpo_refs", "source_invoice_refs_visible"],
+      "properties": {
+        "lpo_refs": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "source_invoice_refs": {
+          "type": "array",
+          "items": {"type": "string"},
+          "default": []
+        },
+        "source_invoice_refs_visible": {"const": false}
+      }
+    },
+    "transaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "serial_no",
+        "description",
+        "uom",
+        "quantity",
+        "unit_price",
+        "gross_amount",
+        "discount_value",
+        "net_amount",
+        "vat_rate_percent",
+        "vat_amount",
+        "net_amount_including_vat"
+      ],
+      "properties": {
+        "serial_no": {"const": 1},
+        "description": {"const": "100% PROJECT COMPLETION"},
+        "uom": {"const": "Pc"},
+        "quantity": {"const": 1},
+        "unit_price": {"type": "number", "minimum": 0, "multipleOf": 0.01},
+        "gross_amount": {"type": "number", "minimum": 0, "multipleOf": 0.01},
+        "discount_value": {"const": 0},
+        "net_amount": {"type": "number", "minimum": 0, "multipleOf": 0.01},
+        "vat_rate_percent": {"const": 5},
+        "vat_amount": {"type": "number", "minimum": 0, "multipleOf": 0.01},
+        "net_amount_including_vat": {"type": "number", "minimum": 0, "multipleOf": 0.01}
+      }
+    },
+    "totals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subtotal_excluding_vat", "vat", "grand_total", "amount_in_words"],
+      "properties": {
+        "subtotal_excluding_vat": {"type": "number", "minimum": 0, "multipleOf": 0.01},
+        "vat": {"type": "number", "minimum": 0, "multipleOf": 0.01},
+        "grand_total": {"type": "number", "minimum": 0, "multipleOf": 0.01},
+        "amount_in_words": {"type": "string", "minLength": 1}
+      }
+    },
+    "vat_breakup": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["category", "vat_percent", "base_amount", "vat_amount"],
+          "properties": {
+            "category": {"const": "Standard Rate"},
+            "vat_percent": {"const": 5},
+            "base_amount": {"type": "number", "minimum": 0, "multipleOf": 0.01},
+            "vat_amount": {"type": "number", "minimum": 0, "multipleOf": 0.01}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["category", "vat_percent", "base_amount", "vat_amount"],
+          "properties": {
+            "category": {"const": "Zero Rate"},
+            "vat_percent": {"const": 0},
+            "base_amount": {"const": 0},
+            "vat_amount": {"const": 0}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["category", "vat_percent", "base_amount", "vat_amount"],
+          "properties": {
+            "category": {"const": "Out of Scope"},
+            "vat_percent": {"const": 0},
+            "base_amount": {"const": 0},
+            "vat_amount": {"const": 0}
+          }
+        }
+      ],
+      "items": false
+    },
+    "bank": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["beneficiary_name", "account_number", "bank_name", "branch", "iban", "swift"],
+      "properties": {
+        "beneficiary_name": {"const": "CONVERGINT SYSTEMS INTEGRATION L.L.C S.O.C"},
+        "account_number": {"const": "011-06-167751"},
+        "bank_name": {"const": "BANK OF SHARJAH"},
+        "branch": {"const": "Dubai, United Arab Emirates"},
+        "iban": {"const": "AE85 0120 0000 0110 6167 751"},
+        "swift": {"const": "SHARAEAS"}
+      }
+    },
+    "layout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["page_size", "orientation", "table_rows", "stamp_visible", "red_box_visible", "header_background", "header_text_color"],
+      "properties": {
+        "page_size": {"const": "A4"},
+        "orientation": {"const": "portrait"},
+        "table_rows": {"const": 1},
+        "stamp_visible": {"const": false},
+        "red_box_visible": {"const": false},
+        "header_background": {"const": "#FFFFFF"},
+        "header_text_color": {"const": "#0B3553"},
+        "body_text_color": {"const": "#123D5A"},
+        "font_family": {"type": "string", "default": "Arial"}
+      }
+    }
+  }
+}

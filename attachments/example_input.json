@@ -1,0 +1,95 @@
+{
+  "document": {
+    "title": "PROFORMA INVOICE",
+    "currency": "AED",
+    "show_invoice_number": false,
+    "invoice_number": null,
+    "show_date": false,
+    "date": null,
+    "place_of_supply": "UAE"
+  },
+  "supplier": {
+    "name": "CONVERGINT SYSTEMS INTEGRATION L.L.C",
+    "address_lines": [
+      "P.O. Box: 28239, Abu Dhabi",
+      "United Arab Emirates"
+    ],
+    "trn": "100436956500003"
+  },
+  "customer": {
+    "name": "WINTERIORS DECOR LLC",
+    "address_lines": [
+      "P. O. Box 643859",
+      "Media City, Dubai",
+      "United Arab Emirates"
+    ],
+    "trn": "100226748000003"
+  },
+  "references": {
+    "lpo_refs": [
+      "WD/DXB/PO/24/44",
+      "WD/DXB/PO/25/63",
+      "WD/DXB/PO/25/52"
+    ],
+    "source_invoice_refs": [],
+    "source_invoice_refs_visible": false
+  },
+  "transaction": {
+    "serial_no": 1,
+    "description": "100% PROJECT COMPLETION",
+    "uom": "Pc",
+    "quantity": 1,
+    "unit_price": 79496.77,
+    "gross_amount": 79496.77,
+    "discount_value": 0,
+    "net_amount": 79496.77,
+    "vat_rate_percent": 5,
+    "vat_amount": 3974.84,
+    "net_amount_including_vat": 83471.61
+  },
+  "totals": {
+    "subtotal_excluding_vat": 79496.77,
+    "vat": 3974.84,
+    "grand_total": 83471.61,
+    "amount_in_words": "AED EIGHTY-THREE THOUSAND FOUR HUNDRED SEVENTY-ONE AND 61/100 ONLY"
+  },
+  "vat_breakup": [
+    {
+      "category": "Standard Rate",
+      "vat_percent": 5,
+      "base_amount": 79496.77,
+      "vat_amount": 3974.84
+    },
+    {
+      "category": "Zero Rate",
+      "vat_percent": 0,
+      "base_amount": 0,
+      "vat_amount": 0
+    },
+    {
+      "category": "Out of Scope",
+      "vat_percent": 0,
+      "base_amount": 0,
+      "vat_amount": 0
+    }
+  ],
+  "bank": {
+    "beneficiary_name": "CONVERGINT SYSTEMS INTEGRATION L.L.C S.O.C",
+    "account_number": "011-06-167751",
+    "bank_name": "BANK OF SHARJAH",
+    "branch": "Dubai, United Arab Emirates",
+    "iban": "AE85 0120 0000 0110 6167 751",
+    "swift": "SHARAEAS"
+  },
+  "layout": {
+    "page_size": "A4",
+    "orientation": "portrait",
+    "table_rows": 1,
+    "stamp_visible": false,
+    "red_box_visible": false,
+    "header_background": "#FFFFFF",
+    "header_text_color": "#0B3553",
+    "body_text_color": "#123D5A",
+    "font_family": "Arial"
+  }
+}
